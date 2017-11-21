@@ -8,13 +8,13 @@
 	"paths": {
 		"/welcome": {
 			"get": {
-				"description": "Get the welcome for the user.",
+				"description": "Get the welcome for the contact.",
 				"operationId": "Welcome",
 				"parameters": [
 					{
-						"description": "The username",
+						"description": "The contact id.",
 						"in": "query",
-						"name": "username",
+						"name": "cid",
 						"required": true,
 						"type": "string"
 					}
@@ -37,9 +37,9 @@
 						"description": "Bad request"
 					}
 				},
-				"summary": "Welcome a user",
+				"summary": "Welcome a contact",
 				"tags": [
-					"training", "welcome"
+					"training", "contact"
 				]
 			}
 		}

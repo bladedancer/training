@@ -1,0 +1,52 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "Training example API",
+    "version": "1.0.0",
+    "title": "Welcome"
+  },
+  "paths": {
+    "/welcome": {
+      "get": {
+        "description": "Get the welcome for the contact.",
+        "operationId": "Welcome",
+        "parameters": [
+          {
+            "description": "The contact id.",
+            "in": "query",
+            "name": "cid",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "Welcome message",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request"
+          }
+        },
+        "summary": "Welcome a contact",
+        "tags": [
+          "training",
+          "contact"
+        ]
+      }
+    }
+  }
+}
