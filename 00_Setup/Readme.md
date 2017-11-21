@@ -1,4 +1,4 @@
-# API Builder Training 01
+# 00 Setup
 
 The goal here is to get API Builder installed and running.
 

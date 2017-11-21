@@ -1,4 +1,4 @@
-# API Builder Training 01 Model First
+# 01 Model First
 
 The goal here is to familiarize yourself with the models, endpoings and model-first creation.
 
