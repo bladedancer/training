@@ -33,13 +33,13 @@
 					"200": {
 						"description": "greeting",
 						"schema": {
-							"$ref": "schema://schema/welcome/greeting"
+							"$ref": "schema:///schema/welcome/greeting"
 						}
 					},
 					"400": {
 						"description": "bad request",
 						"schema": {
-							"$ref": "schema://schema/welcome/error"
+							"$ref": "schema:///schema/welcome/error"
 						}
 					}
 				},

@@ -20,14 +20,14 @@
 			"description": "The codeblock completed.",
 			"context": "$.greeting",
 			"schema": {
-				"$ref": "schema://schema/welcome/greeting"
+				"$ref": "schema:///schema/welcome/greeting"
 			}
 		},
 		"error": {
 			"description": "The codeblock failed to complete.",
 			"context": "$.error",
 			"schema": {
-				"$ref": "schema://schema/welcome/error"
+				"$ref": "schema:///schema/welcome/error"
 			}
 		}
 	}
