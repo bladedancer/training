@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "name": "contact-findAll",
+  "start": "model.findAll",
+  "nodes": {
+    "model.findAll": {
+      "type": "nodehandler://arrow-flow-invoke/model/Contact",
+      "method": "findAll",
+      "name": "Find all Contacts",
+      "parameters": [],
+      "outputs": {
+        "next": {
+          "context": "$.models",
+          "routes": [
+            "response.success"
+          ]
+        }
+      }
+    },
+    "response.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "200",
+          "type": "number"
+        },
+        {
+          "name": "body",
+          "value": "$.models"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}
