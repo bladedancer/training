@@ -54,3 +54,5 @@ allowedHosts: [
 
 In your favourite browser open http://localhost:8080/console. If you're not already authenitcated to the Axway Platform then you will be redirected.
 *Note:* if you're note accessing the console via _localhost_ then the Platform login will not redirect back to console and you will have to enter http://localhost:8080/console again.
+
+![SummaryView](./imgs/localhost_8080_console_project_summary.png)
