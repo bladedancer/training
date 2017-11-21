@@ -1,0 +1,66 @@
+{
+	"schemaVersion": "2",
+	"name": "Greet flow",
+	"start": "block.1",
+	"nodes": {
+		"block.1": {
+			"type": "nodehandler://arrow-flow-invoke/codeblock",
+			"name": "block.1",
+			"method": "Greet",
+			"parameters": [
+				{
+					"name": "username",
+					"value": "$.params.username"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.greeting",
+					"routes": [ "response.success" ]
+				},
+				"error": {
+					"context": "$.error",
+					"routes": [ "response.error" ]
+				}
+			}
+		},
+		"response.success": {
+			"type": "nodehandler://axway-flow/http",
+			"name": "Success (HTTP 200)",
+			"method": "setresponse",
+			"parameters": [
+				{
+					"name": "status",
+					"value": "200",
+					"type": "number"
+				},
+				{
+					"name": "body",
+					"value": "$.greeting"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response"
+				}
+			}
+		},
+		"response.error": {
+			"type": "nodehandler://axway-flow/http",
+			"name": "Bad Request (HTTP 400)",
+			"method": "setresponse",
+			"parameters": [
+				{
+					"name": "status",
+					"value": "400",
+					"type": "number"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response"
+				}
+			}
+		}
+	}
+}
