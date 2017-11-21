@@ -1,0 +1,139 @@
+{
+  "schemaVersion": "2",
+  "name": "contact-findAndModify",
+  "start": "params.buildargs.1",
+  "nodes": {
+    "params.buildargs.1": {
+      "type": "nodehandler://axway-flow/setcontext",
+      "method": "setcontext",
+      "name": "Build args parameter (new)",
+      "parameters": [
+        {
+          "name": "value",
+          "value": "$.params.new"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.params.args.new",
+          "routes": [
+            "params.buildargs.2"
+          ]
+        }
+      }
+    },
+    "params.buildargs.2": {
+      "type": "nodehandler://axway-flow/setcontext",
+      "method": "setcontext",
+      "name": "Build args parameter (upsert)",
+      "parameters": [
+        {
+          "name": "value",
+          "value": "$.params.upsert"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.params.args.upsert",
+          "routes": [
+            "model.findAndModify"
+          ]
+        }
+      }
+    },
+    "model.findAndModify": {
+      "type": "nodehandler://arrow-flow-invoke/model/Contact",
+      "method": "findAndModify",
+      "name": "Find and modify Contact",
+      "parameters": [
+        {
+          "name": "data",
+          "value": "$.params.data"
+        },
+        {
+          "name": "args",
+          "value": "$.params.args"
+        },
+        {
+          "name": "limit",
+          "value": "$.params.limit"
+        },
+        {
+          "name": "skip",
+          "value": "$.params.skip"
+        },
+        {
+          "name": "where",
+          "value": "$.params.where"
+        },
+        {
+          "name": "order",
+          "value": "$.params.order"
+        },
+        {
+          "name": "sel",
+          "value": "$.params.sel"
+        },
+        {
+          "name": "unsel",
+          "value": "$.params.unsel"
+        },
+        {
+          "name": "page",
+          "value": "$.params.page"
+        },
+        {
+          "name": "per_page",
+          "value": "$.params.per_page"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.model",
+          "routes": [
+            "response.success"
+          ]
+        },
+        "notfound": {
+          "routes": [
+            "response.error.notfound"
+          ]
+        }
+      }
+    },
+    "response.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "204",
+          "type": "number"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    },
+    "response.error.notfound": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set not found response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "404",
+          "type": "number"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}
