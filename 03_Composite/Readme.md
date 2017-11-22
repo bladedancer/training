@@ -78,7 +78,7 @@ The updated flow has two new nodes _Query ContactAddress_ and _ContactAddress Ex
 
 The model query node calls [query](http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Model-method-query). Here we are just going to pass a _where_ value to select the contact address.
 
-![QueryContactAddress](./imgs/QueryContactAddres.png) ![QueryContactAddressOutput](./imgs/QueryContactAddressOutput.png)
+![QueryContactAddress](./imgs/QueryContactAddress.png) ![QueryContactAddressOutput](./imgs/QueryContactAddressOutput.png)
 
 Note that the _next_ ouput is saving the result to _$.addresses_. The response from query will be an array of matching models (we'll be assuming at most 1).
 
