@@ -156,7 +156,7 @@ Stop API Builder and open  _endpoints\welcome.json_. Change the response to incl
 }
 ```
 
-Note every models schema is registered on startup and so rather than having to list the fields of a _ContactAddress_ we can just refer to the schema directly.
+Note every model's schema is registered on startup and so rather than having to list the fields of a _ContactAddress_ we can just refer to the schema directly.
 
 ## Test the API
 As before, using the _Test API_ panel execute with _cid_ of _batman_ and you should see results like:
