@@ -147,21 +147,18 @@ flownodes
 Node the _flownodes_ here follows a builder pattern and these are all chainable, they're just being broken down here for readbility.
 
 ### Implementation
-There's a lot of ways this could be done, here it was done with a reduce:
+One thing to be careful of here that is not obvious is that the object returned by _query_ is not plain data object, it has a custom toJson method that converts it to a plan data object. So to handle models aswell as other object be sure to stringify/parse the source object first.
 
 ```
-const obj = Object.keys(req.params.source).reduce(
-	(acc, cur) => {
-		const val = JSON.parse(JSON.stringify(req.params.source[cur]));
-
-		if ((include && req.params.fields.includes(cur))
-			|| (!include && !req.params.fields.includes(cur))) {
-			acc[cur] = val;
-		}
-		return acc;
-	},
-	{}
-);
+// JSON cloning to work with models better.
+const obj = JSON.parse(JSON.stringify(source));
+Object.keys(obj).forEach(field => {
+	if ((!include && fields.includes(field))
+		|| (include && !fields.includes(field))) {
+		delete obj[field];
+	}
+});
+cb.next(null, obj);
 ```
 
 Note also the usage of the callback _cb_. The callback has methods on it matching the outputs defined in _index.js_, in this case _error_ and _next_. So _cb.error_ is triggering the output named error:
@@ -201,7 +198,66 @@ The new _Filter_ node is now present in the tool panel.
 
 ![FilterNode](./imgs/FilterNode.png)
 
+## Sharing
+
+To share just publish to npmjs (or give someone the pack):
+https://www.npmjs.com/package/nodehandler-gm-objectfilter
+
+To install:
+```
+npm install -S nodehandler-gm-objectfilter
+```
 
 ## Update the flow
 
 The goal is to update the flow so that the filter node is inserted before the _Format Response_ and have it strip out the _id_ field from the address.
+
+![UpdatedFlow](./imgs/UpdatedFlow.png)
+
+### Exclude
+*Type:* Filter
+
+*Method:* Exclude
+
+The new extension node that is going to filter out the fields we don't want.
+
+![ExcludeNode](./imgs/ExcludeNode.png) ![ExcludeNodeOutput](./imgs/ExcludeNodeOutput.png)
+
+The node takes _$.addresses[0]_ as the source object and removes _cid_ and _id_ from it. The filtered object is saved as _$.address_ so the _Format Response_ node also needs to be updated for the change.
+
+
+### Format Response
+*Type:* Compose
+
+*Method:* Format object
+
+![FormatResponse](./imgs/FormatResponse.png)
+
+Change from _$.addresses[0]_ to _$.address_ in the template:
+
+```
+{
+  "message": "Welcome",
+  "name": "{{?it.contacts[0].salutation}}{{=it.contacts[0].salutation}} {{?}}{{=it.contacts[0].firstname}} {{=it.contacts[0].lastname}}",
+  "address": {{=JSON.stringify(it.address)}}
+}
+```
+
+## Test API
+
+Save the updated flow and test the API using the _Test API_ panel. The address in the result should no longer have _cid_ or _id_.
+
+```
+{
+  "message": "Welcome",
+  "name": "Mr. Bruce Wayne",
+  "address": {
+    "address1": "Wayne Manor",
+    "address2": "107 Mountain Drive",
+    "city": "Gotham City",
+    "state": "New York",
+    "country": "USA",
+    "postalcode": "0"
+  }
+}
+```
