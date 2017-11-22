@@ -47,7 +47,7 @@ flownodes
 // Exclude Method
 flownodes
 	.method('exclude', {
-		name: 'Include',
+		name: 'Exclude',
 		description: 'Include the selected fields.'
 	})
 	.parameter('source', {
@@ -56,10 +56,6 @@ flownodes
 	})
 	.parameter('fields', {
 		description: 'The the fields to exclude.',
-		type: 'array',
-		items: {
-			type: 'string'
-		}
 	})
 	.output('next', {
 		name: 'Next',

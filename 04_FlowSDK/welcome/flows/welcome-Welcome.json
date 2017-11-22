@@ -86,7 +86,7 @@
 				},
 				{
 					"name": "template",
-					"value": "\"{\\n  \\\"message\\\": \\\"Welcome\\\",\\n  \\\"name\\\": \\\"{{?it.contacts[0].salutation}}{{=it.contacts[0].salutation}} {{?}}{{=it.contacts[0].firstname}} {{=it.contacts[0].lastname}}\\\",\\n  \\\"address\\\": {{=JSON.stringify(it.addresses[0])}}\\n}\"",
+					"value": "\"{\\n  \\\"message\\\": \\\"Welcome\\\",\\n  \\\"name\\\": \\\"{{?it.contacts[0].salutation}}{{=it.contacts[0].salutation}} {{?}}{{=it.contacts[0].firstname}} {{=it.contacts[0].lastname}}\\\",\\n  \\\"address\\\": {{=JSON.stringify(it.address)}}\\n}\"",
 					"type": "string"
 				}
 			],
@@ -184,11 +184,41 @@
 				"true": {
 					"context": "$.exists",
 					"routes": [
-						"doT.2"
+						"gm-objectfilter.1"
 					]
 				},
 				"false": {
 					"context": "$.exists",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"gm-objectfilter.1": {
+			"type": "nodehandler://nodehandler-gm-objectfilter/gm-objectfilter",
+			"name": "Exclude",
+			"method": "exclude",
+			"parameters": [
+				{
+					"name": "fields",
+					"value": "[\"id\", \"cid\"]",
+					"type": "array"
+				},
+				{
+					"name": "source",
+					"value": "$.addresses[0]"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.address",
+					"routes": [
+						"doT.2"
+					]
+				},
+				"error": {
+					"context": "$.error",
 					"routes": [
 						"http.2"
 					]

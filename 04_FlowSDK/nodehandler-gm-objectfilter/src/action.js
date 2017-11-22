@@ -1,22 +1,21 @@
 function filter(req, include, cb) {
-	if (!req.params.source || typeof req.params.source !== 'object') {
+	const source = req.params.source;
+	const fields = req.params.fields;
+
+	if (!source || typeof source !== 'object') {
 		return cb.error(null, 'Invalid source, object required.');
-	} else if (!req.params.fields || !Array.isArray(req.params.fields)) {
+	} else if (!fields || !Array.isArray(fields)) {
 		return cb.error(null, 'Invalid fields, array required.');
 	}
 
-	const obj = Object.keys(req.params.source).reduce(
-		(acc, cur) => {
-			const val = JSON.parse(JSON.stringify(req.params.source[cur]));
-
-			if ((include && req.params.fields.includes(cur))
-				|| (!include && !req.params.fields.includes(cur))) {
-				acc[cur] = val;
-			}
-			return acc;
-		},
-		{}
-	);
+	// JSON cloning to work with models better.
+	const obj = JSON.parse(JSON.stringify(source));
+	Object.keys(obj).forEach(field => {
+		if ((!include && fields.includes(field))
+			|| (include && !fields.includes(field))) {
+			delete obj[field];
+		}
+	});
 	cb.next(null, obj);
 }
 

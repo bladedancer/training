@@ -99,6 +99,13 @@ flownodes
 			type: 'object'
 		}
 	})
+	.output('error', {
+		name: 'Error',
+		context: '$.error',
+		schema: {
+			type: 'string'
+		}
+	})
 	.action(include);
 ```
 
@@ -106,7 +113,7 @@ Exclude Method
 ```
 flownodes
 	.method('exclude', {
-		name: 'Include',
+		name: 'Exclude',
 		description: 'Include the selected fields.'
 	})
 	.parameter('source', {
@@ -127,7 +134,74 @@ flownodes
 			type: 'object'
 		}
 	})
+	.output('error', {
+		name: 'Error',
+		context: '$.error',
+		schema: {
+			type: 'string'
+		}
+	})
 	.action(exclude);
 ```
 
 Node the _flownodes_ here follows a builder pattern and these are all chainable, they're just being broken down here for readbility.
+
+### Implementation
+There's a lot of ways this could be done, here it was done with a reduce:
+
+```
+const obj = Object.keys(req.params.source).reduce(
+	(acc, cur) => {
+		const val = JSON.parse(JSON.stringify(req.params.source[cur]));
+
+		if ((include && req.params.fields.includes(cur))
+			|| (!include && !req.params.fields.includes(cur))) {
+			acc[cur] = val;
+		}
+		return acc;
+	},
+	{}
+);
+```
+
+Note also the usage of the callback _cb_. The callback has methods on it matching the outputs defined in _index.js_, in this case _error_ and _next_. So _cb.error_ is triggering the output named error:
+
+```
+return cb.error(null, 'Invalid source, object required.');
+```
+
+Whereas _cb.next_ is triggering the output named _next_:
+```
+cb.next(null, obj);
+```
+
+### Artistic Flair
+The default icon is just a star:
+
+![icon.svg](./imgs/icon.svg)
+
+Update this with something more appropriate to the node. This will currently be displayed at 28x28px so ensure it looks acceptable at that resolution.
+
+## Installing locally
+For testing purposes it's often useful to build the module locally and install the built module. To build the module:
+
+```
+npm run build
+npm pack
+```
+
+Install the nodehandler into the Welcome app.
+```
+w:\training\04_FlowSDK\welcome>npm install -S ..\nodehandler-gm-objectfilter\nodehandler-gm-objectfilter-1.0.0.tgz
+```
+
+The restart the server and open the _Welcome_ flow http://localhost:8080/console/project/flows/welcome-Welcome/edit.
+
+The new _Filter_ node is now present in the tool panel.
+
+![FilterNode](./imgs/FilterNode.png)
+
+
+## Update the flow
+
+The goal is to update the flow so that the filter node is inserted before the _Format Response_ and have it strip out the _id_ field from the address.
