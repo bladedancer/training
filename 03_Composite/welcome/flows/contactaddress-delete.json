@@ -1,0 +1,65 @@
+{
+  "schemaVersion": "2",
+  "name": "contactaddress-delete",
+  "start": "model.delete",
+  "nodes": {
+    "model.delete": {
+      "type": "nodehandler://arrow-flow-invoke/model/ContactAddress",
+      "method": "delete",
+      "name": "Delete ContactAddress",
+      "parameters": [
+        {
+          "name": "id",
+          "value": "$.params.id"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.delete",
+          "routes": [
+            "response.success"
+          ]
+        },
+        "notfound": {
+          "routes": [
+            "response.error.notfound"
+          ]
+        }
+      }
+    },
+    "response.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set success response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "204",
+          "type": "number"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    },
+    "response.error.notfound": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set not found response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "404",
+          "type": "number"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}
