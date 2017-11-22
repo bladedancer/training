@@ -7,3 +7,5 @@ The goal here is to build up from nothing to an application with a complex API, 
 [01 Model First](./01_ModelFirst)
 
 [02 API First](./02_APIFirst)
+
+[03 Composite](./03_Composite)
