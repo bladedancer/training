@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "2",
+  "name": "contactaddress-upsert",
+  "start": "model.upsert",
+  "nodes": {
+    "model.upsert": {
+      "type": "nodehandler://arrow-flow-invoke/model/ContactAddress",
+      "method": "upsert",
+      "name": "Upsert ContactAddress",
+      "parameters": [
+        {
+          "name": "data",
+          "value": "$.params.data"
+        }
+      ],
+      "outputs": {
+        "insert": {
+          "context": "$.model",
+          "routes": [
+            "set.headers.location",
+            "insert.success"
+          ]
+        },
+        "update": {
+          "context": "$.model",
+          "routes": [
+            "update.success"
+          ]
+        }
+      }
+    },
+    "set.headers.location": {
+      "type": "nodehandler://axway-flow/setcontext",
+      "method": "setcontext",
+      "name": "Set Location",
+      "parameters": [
+        {
+          "name": "value",
+          "value": "$.model.id"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "routes": [
+            "insert.success"
+          ],
+          "context": "$.headers.location"
+        }
+      }
+    },
+    "insert.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set insert response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "201",
+          "type": "number"
+        },
+        {
+          "name": "headers",
+          "value": "$.headers"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    },
+    "update.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set update response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "204",
+          "type": "number"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}

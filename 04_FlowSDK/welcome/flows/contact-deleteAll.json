@@ -1,0 +1,37 @@
+{
+  "schemaVersion": "2",
+  "name": "contact-deleteAll",
+  "start": "model.deleteall",
+  "nodes": {
+    "model.deleteall": {
+      "type": "nodehandler://arrow-flow-invoke/model/Contact",
+      "method": "deleteAll",
+      "name": "Delete all Contacts",
+      "parameters": [],
+      "outputs": {
+        "next": {
+          "routes": [
+            "response.success"
+          ]
+        }
+      }
+    },
+    "response.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "204",
+          "type": "number"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}

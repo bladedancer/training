@@ -1,0 +1,40 @@
+{
+  "name": "nodehandler-gm-objectfilter",
+  "version": "1.0.0",
+  "description": "TODO",
+  "main": "dist/index.js",
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "dist",
+    "icon.svg"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-eslint": "^8.0.1",
+    "babel-preset-env": "^1.6.0",
+    "chai": "^4.1.2",
+    "cross-env": "^5.0.5",
+    "eslint": "^4.11.0",
+    "eslint-config-axway": "^2.0.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-mocha": "^4.11.0",
+    "mocha": "^4.0.0",
+    "nsp": "^2.8.1",
+    "nyc": "^11.2.1",
+    "retire": "^1.4.0",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "axway-flow-sdk": "^1.0.0"
+  },
+  "scripts": {
+    "build": "npm run build:dev",
+    "build:dev": "npm run build:lint && npm run test && npm run build:dist",
+    "build:lint": "eslint .",
+    "build:dist": "babel -d ./dist ./src",
+    "test": "rimraf coverage .nyc-output && cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text-summary node_modules/mocha/bin/mocha --require babel-register ./test --recursive -R spec",
+    "test:debug": "mocha --require babel-register --inspect --debug-brk"
+  }
+}

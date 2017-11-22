@@ -1,0 +1,6 @@
+{
+	"extends": ["axway/env-node", "axway/+mocha"],
+	"rules": {
+		"no-unused-expressions": "off"
+	}
+}
