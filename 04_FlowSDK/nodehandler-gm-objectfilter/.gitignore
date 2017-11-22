@@ -55,3 +55,4 @@ doc
 # retire and nsp files
 scan-nsp.json
 scan-retire.json
+package-lock.json

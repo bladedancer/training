@@ -1,8 +1,34 @@
-exports = module.exports = function (req, cb) {
-	const param = req.params.todo;
-	if (!param) {
-		// invoking the callback with an error will terminate the flow.
-		return cb('invalid argument');
+function filter(req, include, cb) {
+	if (!req.params.source || typeof req.params.source !== 'object') {
+		return cb.error(null, 'Invalid source, object required.');
+	} else if (!req.params.fields || !Array.isArray(req.params.fields)) {
+		return cb.error(null, 'Invalid fields, array required.');
 	}
-	cb.next(null, 'todo');
+
+	const obj = Object.keys(req.params.source).reduce(
+		(acc, cur) => {
+			const val = JSON.parse(JSON.stringify(req.params.source[cur]));
+
+			if ((include && req.params.fields.includes(cur))
+				|| (!include && !req.params.fields.includes(cur))) {
+				acc[cur] = val;
+			}
+			return acc;
+		},
+		{}
+	);
+	cb.next(null, obj);
+}
+
+function include(req, cb) {
+	filter(req, true, cb);
+}
+
+function exclude(req, cb) {
+	filter(req, false, cb);
+}
+
+exports = module.exports = {
+	include,
+	exclude
 };

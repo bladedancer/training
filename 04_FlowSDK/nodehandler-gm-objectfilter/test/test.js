@@ -7,28 +7,85 @@ describe('nodehandler-gm-objectfilter', () => {
 	describe('#constructor', () => {
 		it('[TEST-1] should define node specs', () => {
 			expect(specs).to.exist;
-			expect(typeof action).to.equal('function');
+			expect(typeof action.include).to.equal('function');
+			expect(typeof action.exclude).to.equal('function');
 			expect(mocknode('gm-objectfilter')).to.exist;
 		});
 	});
 
-	describe('#todo', () => {
-		it('[TEST-2] should fail to with invalid argument', () => {
-			// invoke gm-objectfilter#todo and check that the default callback is
-			// called: cb('invalid argument')
-			return mocknode(specs).node('gm-objectfilter').invoke('todo', { todo: undefined })
+	describe('include', () => {
+		it('[TEST-2] should fail if no source', () => {
+			return mocknode(specs).node('gm-objectfilter').invoke('include', { source: undefined, fields: [] })
 				.then((data) => {
-					expect(data).to.deep.equal([ 'invalid argument' ]);
+					expect(data).to.deep.equal({
+						error: [ null, 'Invalid source, object required.' ]
+					});
 				});
 		});
 
-		it('[TEST-3] should succeed', () => {
-			// invoke gm-objectfilter#todo and check that the 'next' output callback is
-			// called: cb.next(null, 'todo')
-			return mocknode(specs).node('gm-objectfilter').invoke('todo', { todo: 'stuff' })
+		it('[TEST-3] should fail if no fields', () => {
+			const source = {
+				hello: 'world'
+			};
+			return mocknode(specs).node('gm-objectfilter').invoke('include', { source, fields: undefined })
 				.then((data) => {
 					expect(data).to.deep.equal({
-						next: [ null, 'todo' ]
+						error: [ null, 'Invalid fields, array required.' ]
+					});
+				});
+		});
+
+		it('[TEST-4] only includes specified fields', () => {
+			const source = {
+				field1: 'one',
+				field2: 2,
+				field3: { hello: 'world' },
+				field4: true
+			};
+			const fields = [ 'field1', 'field3' ];
+			return mocknode(specs).node('gm-objectfilter').invoke('include', { source, fields })
+				.then((data) => {
+					expect(data).to.deep.equal({
+						next: [ null, { field1: 'one', field3: { hello: 'world' } } ]
+					});
+				});
+		});
+	});
+
+	describe('exclude', () => {
+		it('[TEST-5] should fail if no source', () => {
+			return mocknode(specs).node('gm-objectfilter').invoke('exclude', { source: undefined, fields: [] })
+				.then((data) => {
+					expect(data).to.deep.equal({
+						error: [ null, 'Invalid source, object required.' ]
+					});
+				});
+		});
+
+		it('[TEST-6] should fail if no fields', () => {
+			const source = {
+				hello: 'world'
+			};
+			return mocknode(specs).node('gm-objectfilter').invoke('exclude', { source, fields: undefined })
+				.then((data) => {
+					expect(data).to.deep.equal({
+						error: [ null, 'Invalid fields, array required.' ]
+					});
+				});
+		});
+
+		it('[TEST-7] only includes specified fields', () => {
+			const source = {
+				field1: 'one',
+				field2: 2,
+				field3: { hello: 'world' },
+				field4: true
+			};
+			const fields = [ 'field1', 'field3' ];
+			return mocknode(specs).node('gm-objectfilter').invoke('exclude', { source, fields })
+				.then((data) => {
+					expect(data).to.deep.equal({
+						next: [ null, { field2: 2, field4: true } ]
 					});
 				});
 		});
