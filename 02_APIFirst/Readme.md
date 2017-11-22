@@ -71,8 +71,64 @@ The test is checking for the existence of _$.models[0]_, the first element in th
 
 As this is just a simple example the _False_ path just routes to the the _Error_ node which we'll see later just returns a 400. However in a more real world scenario it would likely route to a different error node and return a 404.
 
-### Format Response (Type: Compose)
+### Format Response
+*Type:* Compose
+
+*Method:* Format object
+
+The endpoint is defined as returning:
+
+```
+"schema": {
+	"type": "object",
+	"properties": {
+		"message": { "type": "string" },
+		"name": { "type": "string" }
+	}
+}
+```
+
+The _Format Response_ node is being used to create the data for the response. It's using the _Compose_ node and a _doT_ template to construct the return value.
+
+![FormatResponse](./imgs/FormatResponse.png) ![FormatResponseOutput](./imgs/FormatResponseOutput.png)
+
+The template is concatinating the contact's name details in to a single string:
+
+```
+{
+  "message": "Welcome",
+  "name": "{{?it.salutation}}{{=it.salutation}} {{?}}{{=it.firstname}} {{=it.lastname}}"
+}
+```
+
+Note the _Next_ output is saving the evaluated template as _$.response_, this will be used in the _Success_ node.
 
 ### Success
+*Type:* HTTP
+
+*Method:* Set HTTP Response
+
+This node allows us to set the values we want to use for the response. In this case we're returning a 200 status code with _$.response_ as the body. Note the body is always _application/json_ encoded.
+
+![Success](./imgs/Success.png)
 
 ### Error
+*Type:* HTTP
+
+*Method:* Set HTTP Response
+
+This node allows us to set the values we want to use for the response. In this case we're returning a 400 status code to indicate a _Bad Request_ error.
+
+![Error](./imgs/Error.png)
+
+
+## Testing the API
+
+Save the flow, this will take you back to the API summary view. Expand the API should no longer be disabled. Expand the row and scroll to the _Test API_ section. Try executing with a _cid_ of _batman_. The response should be:
+
+```
+{
+  "message": "Welcome",
+  "name": "Mr. Bruce Wayne"
+}
+```
