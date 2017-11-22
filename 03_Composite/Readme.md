@@ -7,7 +7,7 @@ For this example we'll build on the Welcome API and flow that we've already crea
 ## Create the ContactAddress model
 For simplicilty we'll be creating this model in ArrowDB also but the real power of this feature is that it allows you to combine data from disparate data sources....so imagine this is a MySql database or some other database.
 
-This is the exact same process used to create the _Contact_ model so we won't go into two much detail. Create a user model with  _cid_, _address1_, _address2_, _address3_, _city_, _state_,_country_ and _postcode_ fields.
+This is the exact same process used to create the _Contact_ model so we won't go into two much detail. Create a ContactAddress model with  _cid_, _address1_, _address2_, _address3_, _city_, _state_,_country_ and _postcode_ fields.
 
 ![ContactAddress](./imgs/ContactAddress.png)
 
