@@ -32,6 +32,7 @@ This flow is centered around a _query_ on the contact model. The endpoint will p
 
 ### Format Where
 *Type:* Compose
+
 *Method:* Format string
 
 The model query method expects a _where_ condition as a JSON encoded string. This node takes the _cid_ value from the parameters and encodes it into a string that can be used as the _where_ clause for the query.
@@ -46,9 +47,29 @@ The Compose node uses _doT_ templates, see http://olado.github.io/doT/ for more 
 
 Note also that the value of the evaluated template in the _Next_ output is stored as _$.where_. This will be used as input for the query node.
 
-### Query Contact (Type: Contact)
+### Query Contact
+*Type:* Conatact
 
-### Exists (Type: Condition)
+*Method:* query
+
+The model query node calls [query](http://docs.appcelerator.com/platform/latest/#!/api/Arrow.Model-method-query). Here we are just going to pass a _where_ value to select the contact.
+
+![QueryContact](./imgs/QueryContact.png) ![QueryContactOutput](./imgs/QueryContactOutput.png)
+
+Note that the _next_ ouput is saving the result to _$.models_. The response from query will be an array of matching models (we'll be assuming at most 1).
+
+### Exists
+*Type:* Condition
+
+*Method:* Exists
+
+As query returns an array we need to check if the array contains anything. One way of doing this is to check for the existence of the first element.
+
+![Exists](./imgs/Exists.png)
+
+The test is checking for the existence of _$.models[0]_, the first element in the array returned by _Query Contact_.
+
+As this is just a simple example the _False_ path just routes to the the _Error_ node which we'll see later just returns a 400. However in a more real world scenario it would likely route to a different error node and return a 404.
 
 ### Format Response (Type: Compose)
 
