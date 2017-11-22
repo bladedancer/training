@@ -1,0 +1,153 @@
+{
+	"schemaVersion": "2",
+	"name": "welcome - get /welcome",
+	"start": "doT.1",
+	"nodes": {
+		"doT.1": {
+			"type": "nodehandler://nodehandler-dot/doT",
+			"name": "Format Where",
+			"method": "formatStr",
+			"parameters": [
+				{
+					"name": "data",
+					"value": "$.params"
+				},
+				{
+					"name": "template",
+					"value": "\"{\\\"cid\\\": {{=JSON.stringify(it.cid)}}}\"",
+					"type": "string"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.where",
+					"routes": [
+						"Contact.1"
+					]
+				},
+				"error": {
+					"context": "$.error",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"http.1": {
+			"type": "nodehandler://axway-flow/http",
+			"name": "Success",
+			"method": "setresponse",
+			"parameters": [
+				{
+					"name": "status",
+					"value": "200",
+					"type": "number"
+				},
+				{
+					"name": "body",
+					"type": "jsonpath",
+					"value": "$.response"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response",
+					"routes": []
+				}
+			}
+		},
+		"http.2": {
+			"type": "nodehandler://axway-flow/http",
+			"name": "Error",
+			"method": "setresponse",
+			"parameters": [
+				{
+					"name": "status",
+					"type": "number",
+					"value": "400"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response",
+					"routes": []
+				}
+			}
+		},
+		"doT.2": {
+			"type": "nodehandler://nodehandler-dot/doT",
+			"name": "Format Response",
+			"method": "formatObj",
+			"parameters": [
+				{
+					"name": "data",
+					"value": "$.models[0]"
+				},
+				{
+					"name": "template",
+					"value": "\"{\\n  \\\"message\\\": \\\"Welcome\\\",\\n  \\\"name\\\": \\\"{{?it.salutation}}{{=it.salutation}} {{?}}{{=it.firstname}} {{=it.lastname}}\\\"\\n}\"",
+					"type": "string"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response",
+					"routes": [
+						"http.1"
+					]
+				},
+				"error": {
+					"context": "$.error",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"condition.1": {
+			"type": "nodehandler://axway-flow/condition",
+			"name": "Exists",
+			"method": "exists",
+			"parameters": [
+				{
+					"name": "source",
+					"value": "$.models[0]"
+				}
+			],
+			"outputs": {
+				"true": {
+					"context": "$.exists",
+					"routes": [
+						"doT.2"
+					]
+				},
+				"false": {
+					"context": "$.exists",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"Contact.1": {
+			"type": "nodehandler://arrow-flow-invoke/model/Contact",
+			"name": "Query Contact",
+			"method": "query",
+			"parameters": [
+				{
+					"name": "where",
+					"type": "jsonpath",
+					"value": "$.where"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.models",
+					"routes": [
+						"condition.1"
+					]
+				}
+			}
+		}
+	}
+}

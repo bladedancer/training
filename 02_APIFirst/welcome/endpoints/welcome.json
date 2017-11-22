@@ -45,7 +45,8 @@
         "tags": [
           "training",
           "contact"
-        ]
+        ],
+        "x-flow": "welcome-Welcome"
       }
     }
   }
