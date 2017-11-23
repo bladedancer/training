@@ -1,9 +1,9 @@
 # 01 Model First
 
-The goal here is to familiarize yourself with the models, endpoings and model-first creation.
+The goal here is to familiarize yourself with the models, endpoints and model-first creation.
 
 ## Create a model
-Open the Models page by clicking on the Cube in the navigation bar or browse to http://localhost:8080/console/project/models and click on the +Models button.
+Open the Models page by clicking on the Cube in the navigation bar or browse to http://localhost:8080/console/project/models and click on the +Model button.
 ![ModelView](./imgs/localhost_8080_console_project_models.png)
 
 Create a "Contact" model.
