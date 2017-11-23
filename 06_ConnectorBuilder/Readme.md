@@ -1,4 +1,4 @@
-h1. NOT PRODUCTION READY DO NOT USE
+# NOT PRODUCTION READY DO NOT USE
 
 # 06 Connector Builder
 
@@ -155,7 +155,7 @@ Stop API Builder and open  _endpoints\welcome.json_. Change the response to incl
 
 ## Test API
 
-Open the _Test API_ panel for the _Welcome_ API and execute it with a _cid_ of _batman_. The response should now include the weather total:
+Open the _Test API_ panel for the _Welcome_ API and execute it with a _cid_ of _batman_. The response should now include the weather description:
 
 ```
 {
