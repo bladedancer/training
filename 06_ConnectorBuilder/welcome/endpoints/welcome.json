@@ -37,6 +37,9 @@
 								},
 								"expenses": {
 									"type": "number"
+								},
+								"weather": {
+									"type": "string"
 								}
 							}
 						}

@@ -14,5 +14,5 @@ The goal here is to build up from nothing to an application with a complex API, 
 
 [05 Service Connectors](./05_ServiceConnector)
 
-I'll leave this here but it's not production ready (and the demo that I was using fails due to know defects).
+I'll leave this here but it's not production ready.
 [06 Connector Builder](./06_ConnectorBuilder)

@@ -26,7 +26,7 @@ Let's say we're big fans of _Weatherbit.io_ and want to use it in our flow. Ther
 
 We need the Swagger definition for the service: https://www.weatherbit.io/static/swagger.json
 
-** Note this was not the best choice of API as the swagger is actually not valid - it has query parameters set in the path and defined as path params. Connector Builder actually worked with it but that's unexpected and can't be relied on to remain that way so the swagger on disk has been updated.
+** Note this was not the best choice of API as the swagger is actually not valid - it has query parameters set in the path and defined as path params. Connector Builder actually worked with it but that's unexpected and can't be relied on to remain that way so the swagger on disk has been updated (at least for the _getCurrent_ method that this flow is using).
 
 Run ```connector-builder i``` to start the wizard.
 
@@ -61,3 +61,115 @@ Start the API Builder console and navigate to the _Welcome_ flow: http://localho
 The _Weatherbit.io_ node is now available:
 
 ![WeatherTool.png](./imgs/WeatherTool.png)
+
+## Updating the flow
+
+As well as getting the contacts expenses we also want to get the weather in their area.
+
+![](./imgs/UpdatedFlow.png)
+
+Note the flow layout could be better, there are plans to improve the layout engine.
+
+There's a minor reorganization to move exclude before the service conenctors, just for readability. The addition here is a _Compose_ node to format the city & state into a single string for the _WeatherBit_ method and the addition of the  _WeatherBit_ service connector to get the weather.
+
+
+### Format City State
+*Type:* Compose
+
+*Method:* Format string
+
+The _getCurrent_ API that we're going to call take the city as _city,state_ so just format the string appropriately.
+
+![](./imgs/FormatCityState.png) ![](./imgs/FormatCityStateOutput.png)
+
+The template could be more robust but for now it's just:
+
+```
+{{=it.city}},{{=it.state}}
+```
+
+The output of the template evaluation is stored as _$.citystate_.
+
+
+### Get Weather
+*Type:* Weatherbit.io - Weather API
+
+*Method:* getCurrent
+
+This is the _service connector_ we've just created. The methods on it are the methods defined in the swagger document. For this example we're calling _getCurrent_ with the contacts address details.
+
+![](./imgs/GetWeather.png) ![](./imgs/GetWeatherOutput.png)
+
+The city is ```$.citystate```, from the _Format City State_ output. The country is straight from the contact address _$.address.country_. And you can sign up at weatherbit.io to get an api key.
+
+The output is stored as _$.weather_.
+
+Note: This is pretty brittle, if there is an error in the parameters it will trigger an exception in the response parsing and abort the flow (user gets a 500).
+
+
+### Format Response
+*Type:* Compose
+
+*Method:* Format object
+
+Update the _Format Response_ node to include the weather in it's template:
+
+```
+{
+  "message": "Welcome",
+  "name": "{{?it.contacts[0].salutation}}{{=it.contacts[0].salutation}} {{?}}{{=it.contacts[0].firstname}} {{=it.contacts[0].lastname}}",
+  "address": {{=JSON.stringify(it.address)}},
+  "expenses": {{=it.expenseTotal}},
+  "weather": "{{=it.weather.data[0].weather.description}}"
+}
+```
+
+## Update the endpoint definition
+
+As before, we're changing the response and so should update the endpoint definition to include this new field. Currently this has to be done on the file system.
+
+Stop API Builder and open  _endpoints\welcome.json_. Change the response to include _weather_:
+
+```
+"schema": {
+	"type": "object",
+	"properties": {
+		"message": {
+			"type": "string"
+		},
+		"name": {
+			"type": "string"
+		},
+		"address": {
+			"$ref": "schema:///model/ContactAddress"
+		},
+		"expenses": {
+			"type": "number"
+		},
+		"weather": {
+			"type": "string"
+		}
+	}
+}
+```
+
+## Test API
+
+Open the _Test API_ panel for the _Welcome_ API and execute it with a _cid_ of _batman_. The response should now include the weather total:
+
+```
+{
+  "message": "Welcome",
+  "name": "Mr. Bruce Wayne",
+  "address": {
+    "address1": "Wayne Manor",
+    "address2": "107 Mountain Drive",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "postalcode": "0"
+  },
+  "expenses": 4210,
+  "weather": "Clear sky"
+}
+```
