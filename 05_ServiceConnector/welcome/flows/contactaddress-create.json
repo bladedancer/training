@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "2",
+  "name": "contactaddress-create",
+  "start": "model.create",
+  "nodes": {
+    "model.create": {
+      "type": "nodehandler://arrow-flow-invoke/model/ContactAddress",
+      "method": "create",
+      "name": "Create ContactAddress",
+      "parameters": [
+        {
+          "name": "data",
+          "value": "$.params.data"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.model",
+          "routes": [
+            "set.headers.location",
+            "response.success"
+          ]
+        }
+      }
+    },
+    "set.headers.location": {
+      "type": "nodehandler://axway-flow/setcontext",
+      "method": "setcontext",
+      "name": "Set Headers Location",
+      "parameters": [
+        {
+          "name": "value",
+          "value": "$.model.id"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "routes": [
+            "response.success"
+          ],
+          "context": "$.headers.location"
+        }
+      }
+    },
+    "response.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set success response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "201",
+          "type": "number"
+        },
+        {
+          "name": "headers",
+          "value": "$.headers"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}

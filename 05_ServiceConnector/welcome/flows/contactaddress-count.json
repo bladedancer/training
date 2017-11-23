@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "2",
+  "name": "contactaddress-count",
+  "start": "model.count",
+  "nodes": {
+    "model.count": {
+      "type": "nodehandler://arrow-flow-invoke/model/ContactAddress",
+      "method": "count",
+      "name": "Count ContactAddresses",
+      "parameters": [
+        {
+          "name": "limit",
+          "value": "$.params.limit"
+        },
+        {
+          "name": "skip",
+          "value": "$.params.skip"
+        },
+        {
+          "name": "where",
+          "value": "$.params.where"
+        },
+        {
+          "name": "order",
+          "value": "$.params.order"
+        },
+        {
+          "name": "sel",
+          "value": "$.params.sel"
+        },
+        {
+          "name": "unsel",
+          "value": "$.params.unsel"
+        },
+        {
+          "name": "page",
+          "value": "$.params.page"
+        },
+        {
+          "name": "per_page",
+          "value": "$.params.per_page"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.count",
+          "routes": [
+            "response.success"
+          ]
+        }
+      }
+    },
+    "response.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "200",
+          "type": "number"
+        },
+        {
+          "name": "body",
+          "value": "$.count"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}

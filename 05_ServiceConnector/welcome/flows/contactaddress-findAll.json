@@ -1,0 +1,42 @@
+{
+  "schemaVersion": "2",
+  "name": "contactaddress-findAll",
+  "start": "model.findAll",
+  "nodes": {
+    "model.findAll": {
+      "type": "nodehandler://arrow-flow-invoke/model/ContactAddress",
+      "method": "findAll",
+      "name": "Find all ContactAddresses",
+      "parameters": [],
+      "outputs": {
+        "next": {
+          "context": "$.models",
+          "routes": [
+            "response.success"
+          ]
+        }
+      }
+    },
+    "response.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "200",
+          "type": "number"
+        },
+        {
+          "name": "body",
+          "value": "$.models"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}

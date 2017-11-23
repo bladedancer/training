@@ -1,0 +1,2532 @@
+{
+  "paths": {
+    "/attendees": {
+      "post": {
+        "summary": "Creates a new attendee.",
+        "operationId": "createAttendee",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/attendee"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "{\"ID\":\"gWnfI$p2dqmqKfcNd3b7$sO3GsUqXjrYiL5Tw\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/attendees/gWnfI$p2dqmqKfcNd3b7$sO3GsUqXjrYiL5Tw\"}",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "409": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Conflict - If a resource being created already exists"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/attendee"
+            },
+            "x-sample": "{\"CurrencyCode\":\"USD\",\"OwnerName\":\"Elements, Claude\",\"FirstName\":\"Claude\",\"ExternalID\":faker.internet.email(),\"TotalAmountPrevYear\":0,\"TotalAmountYTD\":0,\"LastName\":\"Elements\",\"AttendeeTypeID\":\"gWjYIioJrIwLMmDyXZ4JiPuGppeMbMw\",\"VersionNumber\":1}",
+            "in": "body",
+            "name": "body",
+            "description": "The Attendee object to create.",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID of the user that has added the attendee to an expense",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "get": {
+        "summary": "Gets all attendees owned by the specified user.",
+        "operationId": "getAttendees",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/attendeeList"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "[{\"OwnerName\":\"Elements, Claude\",\"HasExceptionsPrevYear\":false,\"OwnerLoginID\":\"developer@cloud-elements.com\",\"FirstName\":\"John\",\"HasExceptionsYTD\":false,\"AttendeeTypeCode\":\"BUSGUEST\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/attendees/gWnfI$p2dqmtrvxjLySV0aulNjzMMxikPVmg\",\"VersionNumber\":1,\"CurrencyCode\":\"USD\",\"TotalAmountPrevYear\":0,\"TotalAmountYTD\":0,\"ID\":\"gWnfI$p2dqmtrvxjLySV0aulNjzMMxikPVmg\",\"LastName\":\"Samuel\",\"AttendeeTypeID\":\"gWjYIioFpAOZmDl9BGbV0fhEayhtLMQ\"}]",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "attendeeTypeID",
+            "description": "The ID of an attendee type",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "externalID",
+            "description": "The external ID of an attendee",
+            "type": "string",
+            "required": false
+          },
+          {
+            "x-sample": "gWk$poAs$s2X0PNDjRKgZvfo9$pR1WpB",
+            "in": "query",
+            "name": "continuationToken",
+            "description": "The page number of resources to retrieve",
+            "type": "string",
+            "required": false
+          },
+          {
+            "x-sample": "25",
+            "in": "query",
+            "name": "pageSize",
+            "description": "The number of resources to return in a given page",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID of the user that has added the attendee to an expense. ",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    },
+    "/lists": {
+      "post": {
+        "summary": "Create a new List",
+        "operationId": "createList",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/lists"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "{\"ID\":\"gWrB3eM9ePjWVOsYhQzIYAsfy$snsxBt9oLQ\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/lists/gWrB3eM9ePjWVOsYhQzIYAsfy$snsxBt9oLQ\"}",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "409": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Conflict - If a resource being created already exists"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/list"
+            },
+            "x-sample": "{\"DisplayCodeFirst\":true,\"IsVendorList\":true,\"SearchCriteriaCode\":\"TEXT\",\"ID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/lists/gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"Name\":\"Vendors - Travel Agents\"}",
+            "in": "body",
+            "name": "body",
+            "description": "JSON of the list to create",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "summary": "Get Lists",
+        "operationId": "getLists",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/listList"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "[{\"DisplayCodeFirst\":true,\"IsVendorList\":true,\"SearchCriteriaCode\":\"TEXT\",\"ID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/lists/gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"Name\":\"Vendors - Travel Agents\"}]",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "25",
+            "in": "query",
+            "name": "pageSize",
+            "description": "The number of resources to return in a given page",
+            "type": "number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "continuationToken",
+            "description": "The page number of resources to retrieve",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    },
+    "/lists/{listId}/items/{ID}": {
+      "patch": {
+        "summary": "Get or Search for Expense Reports.",
+        "operationId": "updateListsItemByID",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Object"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "listId",
+            "description": "The list ID",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw",
+            "in": "path",
+            "name": "ID",
+            "description": "ID of the Item to retrieve",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/item"
+            },
+            "x-sample": "{\"Level1Code\": faker.name.findName(),\"ListID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"Name\":\"Rosenbluth International\"}",
+            "in": "body",
+            "name": "body",
+            "description": "Item to be updated. Only supplied attributes will be updated",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "summary": "Get or Search for Expense Reports.",
+        "operationId": "getListsItemByID",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/item"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "{\"Level1Code\":\"Rosenbluth\",\"ListID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"ID\":\"gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/listitems/gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw/gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw\",\"Name\":\"Rosenbluth International\"}",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw",
+            "in": "path",
+            "name": "ID",
+            "description": "The unique identifier for the listItem.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg",
+            "in": "path",
+            "name": "listId",
+            "description": "The unique identifier for the list this item is a member of.",
+            "type": "string",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Delete an Item",
+        "operationId": "deleteListsItemByID",
+        "responses": {
+          "200": {
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "listId",
+            "description": "ListID of the Item",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "ID",
+            "description": "ID of the Item to retrieve",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/attendees/{attendeesId}": {
+      "patch": {
+        "summary": "Updates the specified attendee. Only the fields provided in the supplied object are updated. Missing fields are not altered.",
+        "operationId": "updateAttendeeByAttendeesId",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Object"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA",
+            "in": "path",
+            "name": "attendeesId",
+            "description": "The attendee ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/attendee"
+            },
+            "x-sample": "{\"LastName\":\"Elementssss\"}",
+            "in": "body",
+            "name": "body",
+            "description": "The partial or complete Attendee object to update.",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID of the user that has added the Attendee to an expense",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "get": {
+        "summary": "Gets a single attendee by ID.",
+        "operationId": "getAttendeeByAttendeesId",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/attendee"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "{\"OwnerName\":\"Elements, Claude\",\"HasExceptionsPrevYear\":false,\"OwnerLoginID\":\"developer@cloud-elements.com\",\"FirstName\":\"Claude\",\"ExternalID\":\"developer@cloud-elements.com\",\"HasExceptionsYTD\":false,\"AttendeeTypeCode\":\"SYSEMP\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/attendees/gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA\",\"VersionNumber\":1,\"CurrencyCode\":\"USD\",\"TotalAmountPrevYear\":0.0,\"TotalAmountYTD\":0.0,\"ID\":\"gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA\",\"LastName\":\"Elementssss\",\"AttendeeTypeID\":\"gWjYIioJrIwLMmDyXZ4JiPuGppeMbMw\"}",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA",
+            "in": "path",
+            "name": "attendeesId",
+            "description": "The attendee ID.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID of the user that has added the attendee to an expense.",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "delete": {
+        "summary": "Deletes the specified attendee.",
+        "operationId": "deleteAttendeeByAttendeesId",
+        "responses": {
+          "200": {
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA",
+            "in": "path",
+            "name": "attendeesId",
+            "description": "The ID of the attendee to delete.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID of the user that has added the attendee to an expense",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    },
+    "/reports": {
+      "post": {
+        "summary": "Create a new report",
+        "operationId": "createReport",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/report"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "{\"ID\":\"97A720B12E0D496E9E7F\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/reports/97A720B12E0D496E9E7F\"}",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "409": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Conflict - If a resource being created already exists"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/report"
+            },
+            "x-sample": "{\"LastModifiedDate\":\"2016-01-19T22:53:23.117\",\"TotalApprovedAmount\":100,\"OwnerName\":\"Claude Elements\",\"AmountDueCompanyCard\":0,\"HasException\":true,\"ReceiptsReceived\":false,\"ApprovalStatusCode\":\"A_NOTF\",\"CreateDate\":\"2016-01-12T18:14:05.997\",\"Name\":\"Test\",\"CurrencyCode\":\"USD\",\"EverSentBack\":false,\"TotalClaimedAmount\":100,\"PersonalAmount\":0,\"ApprovalStatusName\":\"Not Submitted\",\"LastComment\":\"This is a test.\",\"Total\":100,\"Country\":\"US\",\"AmountDueEmployee\":100,\"LedgerName\":\"DEFAULT\",\"PaymentStatusCode\":\"P_NOTP\",\"PaymentStatusName\":\"Not Paid\"}",
+            "in": "body",
+            "name": "body",
+            "description": "The report object to create",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID for the Report Owner.",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "get": {
+        "summary": "Get or Search for Expense Reports.",
+        "operationId": "getReports",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/reportList"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "[{\"LastModifiedDate\":\"2016-01-19T22:53:23.117\",\"TotalApprovedAmount\":100,\"OwnerName\":\"Claude Elements\",\"ReceiptsReceived\":false,\"ApprovalStatusCode\":\"A_NOTF\",\"CreateDate\":\"2016-01-12T18:14:05.997\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/reports/EEC0470383234B499D69\",\"Custom15\":{\"ListItemID\":\"gWqnR7mLiH4wIPgMTR5mkTdweEMehX65RXg\",\"Type\":\"List\",\"Value\":\"United States\",\"Code\":\"US\"},\"Name\":\"Test\",\"CurrencyCode\":\"USD\",\"TotalClaimedAmount\":100,\"LastComment\":\"This is a test.\",\"ID\":\"EEC0470383234B499D69\",\"LedgerName\":\"DEFAULT\",\"PaymentStatusName\":\"Not Paid\",\"PolicyID\":\"gWmE4dLVp18lVTntnORioeMY71r$pUo$smw5Q\",\"WorkflowActionUrl\":\"\",\"OwnerLoginID\":\"developer@cloud-elements.com\",\"UserDefinedDate\":\"2016-01-12T00:00:00\",\"AmountDueCompanyCard\":0,\"HasException\":true,\"EverSentBack\":false,\"PersonalAmount\":0,\"ApprovalStatusName\":\"Not Submitted\",\"Total\":100,\"Country\":\"US\",\"AmountDueEmployee\":100,\"PaymentStatusCode\":\"P_NOTP\"}]",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "expenseGroupConfigID",
+            "description": "The unique identifier for the expense group configuration associated to the report's expense group",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "hasImages",
+            "description": "Determines if the report has at least one expense entry with an entry image or if there is a report image for this report. FORMAT: true or false",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "hasBillableExpenses",
+            "description": "The IsBillable flag for at least one expense entry in the report. FORMAT: true or false.",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "hasAttendees",
+            "description": "Determines if the report has at least one expense entry with an attendee. FORMAT: true or false",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "expenseTypeCode",
+            "description": "The expense type code that is the expense type for at least one expense entry in the report. Use ExpenseTypeCode from Response of GET Expense Group Configurations V3.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "countryCode",
+            "description": "The report country. Maximum 2 characters. Format: The ISO 3166-1 alpha-2 country code. Example: United States is US.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "currencyCode",
+            "description": "The 3-letter ISO 4217 currency code for the report currency. Example: USD.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "continuationToken",
+            "description": "The page number of resources to retrieve",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "hasVAT",
+            "description": "Determines if the report has at least one expense entry with VAT details. FORMAT: true or false.",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "isTestUser",
+            "description": "The report owner is a test user using the report for testing purposes in a non-production environment. FORMAT: true or false.",
+            "type": "boolean",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "modifiedDateAfter",
+            "description": "The report modified date is after this date. Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "modifiedDateBefore",
+            "description": "The report modified date is before this date. Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "x-sample": "25",
+            "in": "query",
+            "name": "pageSize",
+            "description": "The number of resources to return in a given page",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "paidDateAfter",
+            "description": "The report paid date is after this date. Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "userDefinedDateAfter",
+            "description": "The report user defined date is after this date.Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID of the report owner(s) to use when searching for reports.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "paidDateBefore",
+            "description": "The report paid date is before this date. Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "submitDateBefore",
+            "description": "The report submit date is before this date.Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "submitDateAfter",
+            "description": "The report submit date is after this date.Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "reimbursementMethod",
+            "description": "The method the report owner will be reimbursed. VALUES: ADPPAYR - ADP Payroll; APCHECK - AP (Company Check); CNQRPAY - Expense Pay; PMTSERV - Other Payment Service. NOTE: PAY_PAL is NOT supported.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "processingPaymentDateBefore",
+            "description": "The report processing payment date is before this date.Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "processingPaymentDateAfter",
+            "description": "The report processing payment date is after this date. Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "paymentType",
+            "description": "The unique identifier for the payment type that is the payment type for at least one expense entry in the report.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "paymentStatusCode",
+            "description": "The payment status code for the report",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "createDateBefore",
+            "description": "The report create date is before this date.Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "createDateAfter",
+            "description": "The report create date is after this date.Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "attendeeTypeCode",
+            "description": "The report contains expense entries that have attendees of the specified type.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "approverLoginID",
+            "description": "The login ID for the report approver that is the current approver assigned to the report.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "approvalStatusCode",
+            "description": "The status code for the Approval Status",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "userDefinedDateBefore",
+            "description": "The report user defined date is before this date. Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "vendorName",
+            "description": "The Vendor Description that is the vendor for at least one expense entry in the report.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "batchID",
+            "description": "The unique identifier for a payment batch where there is at least one report payee within the report. Use the BatchID from Response of GET Payment Batch List.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "costObject",
+            "description": "The list item code for an allocation field for at least allocation in the report.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "entryTransactionDateAfter",
+            "description": "The entry transaction date for at least one expense entry in the report is after this date. Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "entryTransactionDateBefore",
+            "description": "The entry transaction date for at least one expense entry in the report is before this date. Format: YYYY-MM-DD",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    },
+    "/lists/{listId}/items": {
+      "post": {
+        "summary": "Create an Item ",
+        "operationId": "createListItem",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/item"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "{\"ID\":\"gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/listitems/gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw\"}",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "409": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Conflict - If a resource being created already exists"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "listId",
+            "description": "The list ID",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/item"
+            },
+            "x-sample": "{\"Level1Code\": faker.random.word(),\"Name\":\"Rosenbluth International\"}",
+            "in": "body",
+            "name": "body",
+            "description": "Post Body for Creating a List Item in Concur",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "summary": "Get or Search for Expense Reports.",
+        "operationId": "getListsItems",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/itemList"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "[{\"Level1Code\":\"American Express Travel\",\"ListID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"ID\":\"gWqnR7mLiHogNgQAID0ZUjEMxaMBOT3VnZw\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/listitems/gWqnR7mLiHogNgQAID0ZUjEMxaMBOT3VnZw\",\"Name\":\"American Express Travel\"}]",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "listId",
+            "description": "The unique identifier for the list this item is a member of.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "25",
+            "in": "query",
+            "name": "pageSize",
+            "description": "The number of resources to return in a given page",
+            "type": "number",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "parentId",
+            "description": "The unique identifier of this item's parent. Is empty when there is no parent.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "x-sample": "gWjAxqYy$pQyJy7ybPvoC2I0xzLqLbYb4ZXA",
+            "in": "query",
+            "name": "continuationToken",
+            "description": "The page number of resources to retrieve",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "name",
+            "description": "The name of the listItem. Text Max length: 64.",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level5Code",
+            "description": "The item code for the fifth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level4Code",
+            "description": "The item code for the fourth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level3Code",
+            "description": "\t The item code for the third level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level2Code",
+            "description": "The item code for the second level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level1Code",
+            "description": "The item code for the first level of the list. All lists have at least a Level1Code. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level10Code",
+            "description": "\t The item code for the tenth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level6Code",
+            "description": "The item code for the sixth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level7Code",
+            "description": "\t The item code for the seventh level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level8Code",
+            "description": "The item code for the eighth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "level9Code",
+            "description": "\t The item code for the ninth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    },
+    "/lists/{listId}": {
+      "patch": {
+        "summary": "Create a new List",
+        "operationId": "updateListByListId",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Object"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "gWvcho1i38r4DvacV2n3oQ8ZKP5peSe7Mkg",
+            "in": "path",
+            "name": "listId",
+            "description": "List ID",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/list"
+            },
+            "x-sample": "{\"Name\":\"Vendors - Travel Agents2\"}",
+            "in": "body",
+            "name": "body",
+            "description": "JSON of the list to create",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "summary": "Get Lists",
+        "operationId": "getListByListId",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/list"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "{\"DisplayCodeFirst\":true,\"IsVendorList\":true,\"SearchCriteriaCode\":\"TEXT\",\"ID\":\"gWvcho1i38r4DvacV2n3oQ8ZKP5peSe7Mkg\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/lists/gWvcho1i38r4DvacV2n3oQ8ZKP5peSe7Mkg\",\"Name\":\"Vendors - Travel Agents\"}",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "gWvcho1i38r4DvacV2n3oQ8ZKP5peSe7Mkg",
+            "in": "path",
+            "name": "listId",
+            "description": "ID of the list to retreive",
+            "type": "string",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/reports/{reportId}": {
+      "patch": {
+        "summary": "Updates report specified in the URL. Only the fields provided in the supplied object will be updated, missing fields will not be altered.",
+        "operationId": "updateReportByReportId",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/Object"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "97A720B12E0D496E9E7F",
+            "in": "path",
+            "name": "reportId",
+            "description": "The unique identifier for the report.",
+            "type": "string",
+            "required": true
+          },
+          {
+            "schema": {
+              "$ref": "#/definitions/report"
+            },
+            "x-sample": "{\"OwnerName\":\"claude\"}",
+            "in": "body",
+            "name": "body",
+            "description": "The report object to update",
+            "required": false
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID for the Report Owner.",
+            "type": "string",
+            "required": false
+          }
+        ]
+      },
+      "get": {
+        "summary": "Retrieve a report by ID",
+        "operationId": "getReportByReportId",
+        "responses": {
+          "200": {
+            "schema": {
+              "$ref": "#/definitions/report"
+            },
+            "headers": {
+              "elements-returned-count": {
+                "type": "string"
+              },
+              "Content-Length": {
+                "type": "string"
+              }
+            },
+            "x-sample": "{\"LastModifiedDate\":\"2016-10-17T20:10:37.01\",\"TotalApprovedAmount\":0.0,\"OwnerName\":\"Claude Elements\",\"ReceiptsReceived\":false,\"ApprovalStatusCode\":\"A_NOTF\",\"CreateDate\":\"2016-10-17T20:10:37.01\",\"URI\":\"http://www.concursolutions.com/api/v3.0/expense/reports/97A720B12E0D496E9E7F\",\"Custom15\":{\"ListItemID\":\"gWqnR7mLiH4wIPgMTR5mkTdweEMehX65RXg\",\"Type\":\"List\",\"Value\":\"United States\",\"Code\":\"US\"},\"Name\":\"Test\",\"CurrencyCode\":\"USD\",\"TotalClaimedAmount\":0.0,\"LastComment\":\"\",\"ID\":\"97A720B12E0D496E9E7F\",\"LedgerName\":\"DEFAULT\",\"PaymentStatusName\":\"Not Paid\",\"PolicyID\":\"gWmE4dLVp18lVTntnORioeMY71r$pUo$smw5Q\",\"WorkflowActionUrl\":\"\",\"OwnerLoginID\":\"developer@cloud-elements.com\",\"UserDefinedDate\":\"2016-10-17T13:10:36\",\"AmountDueCompanyCard\":0.0,\"HasException\":false,\"EverSentBack\":false,\"PersonalAmount\":0.0,\"ApprovalStatusName\":\"Not Submitted\",\"Total\":0.0,\"Country\":\"US\",\"AmountDueEmployee\":0.0,\"PaymentStatusCode\":\"P_NOTP\"}",
+            "description": "OK - Everything worked as expected"
+          },
+          "400": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Bad Request - Often due to a missing request parameter"
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Unauthorized - An invalid element token, user secret and/or org secret provided"
+          },
+          "403": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Forbidden - Access to the resource by the provider is forbidden"
+          },
+          "404": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Not found - The requested resource is not found"
+          },
+          "405": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Method not allowed - Incorrect HTTP verb used, e.g., GET used when POST expected"
+          },
+          "500": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Something went wrong on the server"
+          },
+          "502": {
+            "schema": {
+              "$ref": "#/definitions/defaultErrorObject"
+            },
+            "description": "Server error - Internal server error"
+          }
+        },
+        "parameters": [
+          {
+            "in": "header",
+            "name": "x-vendor-authorization",
+            "description": "The vendor authorization token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "x-sample": "97A720B12E0D496E9E7F",
+            "in": "path",
+            "name": "reportId",
+            "description": "ID of the Expense Report",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "user",
+            "description": "The login ID of the report owner(s) to use when searching for reports.",
+            "type": "string",
+            "required": false
+          }
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "item": {
+      "type": "object",
+      "properties": {
+        "Level7Code": {
+          "type": "string"
+        },
+        "ParentID": {
+          "type": "string"
+        },
+        "Level2Code": {
+          "type": "string"
+        },
+        "Level4Code": {
+          "type": "string"
+        },
+        "URI": {
+          "type": "string"
+        },
+        "Level6Code": {
+          "type": "string"
+        },
+        "Level8Code": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Level1Code": {
+          "type": "string"
+        },
+        "Level10Code": {
+          "type": "string"
+        },
+        "ListID": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "Level3Code": {
+          "type": "string"
+        },
+        "Level5Code": {
+          "type": "string"
+        },
+        "Level9Code": {
+          "type": "string"
+        }
+      }
+    },
+    "attendee": {
+      "type": "object",
+      "properties": {
+        "Company": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom19": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "OwnerName": {
+          "type": "string"
+        },
+        "Custom18": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "ExternalID": {
+          "type": "string"
+        },
+        "Custom13": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom12": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom11": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "HasExceptionsYTD": {
+          "type": "boolean"
+        },
+        "Custom10": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "AttendeeTypeCode": {
+          "type": "string"
+        },
+        "Custom17": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom16": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "URI": {
+          "type": "string"
+        },
+        "Custom15": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom14": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "CurrencyCode": {
+          "type": "string"
+        },
+        "MiddleInitial": {
+          "type": "string"
+        },
+        "TotalAmountPrevYear": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "TotalAmountYTD": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "AttendeeTypeID": {
+          "type": "string"
+        },
+        "HasExceptionsPrevYear": {
+          "type": "boolean"
+        },
+        "OwnerLoginID": {
+          "type": "string"
+        },
+        "FirstName": {
+          "type": "string"
+        },
+        "Custom24": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom23": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Title": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom22": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom21": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "VersionNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Custom25": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom4": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom3": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom2": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom1": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Suffix": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom20": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom8": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom7": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom6": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom5": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom9": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "LastName": {
+          "type": "string"
+        }
+      }
+    },
+    "defaultErrorObject": {
+      "type": "object",
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "providerMessage": {
+          "type": "object"
+        },
+        "requestId": {
+          "type": "string"
+        },
+        "errorType": {
+          "type": "string"
+        },
+        "httpStatus": {
+          "type": "string"
+        }
+      }
+    },
+    "lists": {
+      "type": "object",
+      "properties": {
+        "ID": {
+          "type": "string"
+        },
+        "URI": {
+          "type": "string"
+        }
+      }
+    },
+    "CustomField": {
+      "type": "object",
+      "properties": {
+        "ListItemID": {
+          "type": "string"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "Value": {
+          "type": "string"
+        },
+        "Code": {
+          "type": "string"
+        }
+      }
+    },
+    "report": {
+      "type": "object",
+      "properties": {
+        "LastModifiedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Custom19": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom18": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "SubmitDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Custom13": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "ApproverLoginID": {
+          "type": "string"
+        },
+        "Custom12": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom11": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "ReceiptsReceived": {
+          "type": "boolean"
+        },
+        "Custom10": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "ApprovalStatusCode": {
+          "type": "string"
+        },
+        "Custom17": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "CreateDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Custom16": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom15": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom14": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "CurrencyCode": {
+          "type": "string"
+        },
+        "TotalClaimedAmount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "LastComment": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "LedgerName": {
+          "type": "string"
+        },
+        "PaymentStatusName": {
+          "type": "string"
+        },
+        "PolicyID": {
+          "type": "string"
+        },
+        "WorkflowActionUrl": {
+          "type": "string"
+        },
+        "OwnerLoginID": {
+          "type": "string"
+        },
+        "AmountDueCompanyCard": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "HasException": {
+          "type": "boolean"
+        },
+        "CountrySubdivision": {
+          "type": "string"
+        },
+        "Custom4": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "EverSentBack": {
+          "type": "boolean"
+        },
+        "Custom3": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom2": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "ApprovalStatusName": {
+          "type": "string"
+        },
+        "Custom1": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom8": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom7": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "ProcessingPaymentDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Custom6": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Custom5": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Country": {
+          "type": "string"
+        },
+        "Custom9": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "PaymentStatusCode": {
+          "type": "string"
+        },
+        "TotalApprovedAmount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "OwnerName": {
+          "type": "string"
+        },
+        "URI": {
+          "type": "string"
+        },
+        "PaidDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "ApproverName": {
+          "type": "string"
+        },
+        "UserDefinedDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "OrgUnit6": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "OrgUnit5": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "OrgUnit4": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "OrgUnit3": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "OrgUnit2": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "OrgUnit1": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "PersonalAmount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "Custom20": {
+          "$ref": "#/definitions/CustomField"
+        },
+        "Total": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "AmountDueEmployee": {
+          "format": "int32",
+          "type": "integer"
+        }
+      }
+    },
+    "reportList": {
+      "type": "object",
+      "properties": {
+        "nextContinuationToken": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/report"
+          }
+        },
+        "returnedCount": {
+          "type": "integer"
+        }
+      }
+    },
+    "itemList": {
+      "type": "object",
+      "properties": {
+        "nextContinuationToken": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/item"
+          }
+        },
+        "returnedCount": {
+          "type": "integer"
+        }
+      }
+    },
+    "list": {
+      "type": "object",
+      "properties": {
+        "DisplayCodeFirst": {
+          "type": "boolean"
+        },
+        "Level7Code": {
+          "type": "string"
+        },
+        "Level2Code": {
+          "type": "string"
+        },
+        "IsVendorList": {
+          "type": "boolean"
+        },
+        "Level4Code": {
+          "type": "string"
+        },
+        "URI": {
+          "type": "string"
+        },
+        "Level6Code": {
+          "type": "string"
+        },
+        "Level8Code": {
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Level1Code": {
+          "type": "string"
+        },
+        "SearchCriteriaCode": {
+          "type": "string"
+        },
+        "ExternalThreshold": {
+          "type": "string"
+        },
+        "ID": {
+          "type": "string"
+        },
+        "Level3Code": {
+          "type": "string"
+        },
+        "Level5Code": {
+          "type": "string"
+        },
+        "Level9Code": {
+          "type": "string"
+        },
+        "ConnectorID": {
+          "type": "string"
+        }
+      }
+    },
+    "attendeeList": {
+      "type": "object",
+      "properties": {
+        "nextContinuationToken": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/attendee"
+          }
+        },
+        "returnedCount": {
+          "type": "integer"
+        }
+      }
+    },
+    "listList": {
+      "type": "object",
+      "properties": {
+        "nextContinuationToken": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/list"
+          }
+        },
+        "returnedCount": {
+          "type": "integer"
+        }
+      }
+    },
+    "Object": {
+      "type": "object",
+      "properties": {
+        "nextContinuationToken": {
+          "type": "string"
+        },
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/list"
+          }
+        },
+        "returnedCount": {
+          "type": "integer"
+        }
+      }
+    }
+  },
+  "swagger": "2.0",
+  "info": {
+    "title": "SAP Concur®",
+    "version": "0.0"
+  },
+  "tags": [
+    {
+      "name": "concurnative",
+      "description": "Concur Element"
+    }
+  ]
+}

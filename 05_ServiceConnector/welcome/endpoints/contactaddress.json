@@ -1,0 +1,767 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "ContactAddress",
+    "version": "1.0.0"
+  },
+  "basePath": "/endpoints",
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/contactaddress": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "The create succeeded.",
+            "headers": {
+              "Location": {
+                "description": "The URL to the newly created instance.",
+                "type": "string"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Create a ContactAddress",
+        "operationId": "Create contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Create body",
+            "schema": {
+              "$ref": "schema:///model/ContactAddress"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-create"
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "The delete succeeded."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Deletes all ContactAddresss",
+        "operationId": "Delete All contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-deleteAll"
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The find all succeeded, and the results are available.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "schema:///model/ContactAddress"
+              }
+            }
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Find all ContactAddress",
+        "operationId": "Find All contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-findAll"
+      }
+    },
+    "/contactaddress/{id}": {
+      "put": {
+        "responses": {
+          "204": {
+            "description": "The update succeeded."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Update a ContactAddress",
+        "operationId": "Update contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ContactAddress ID",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Update body",
+            "schema": {
+              "$ref": "schema:///model/ContactAddress"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-update"
+      },
+      "delete": {
+        "responses": {
+          "204": {
+            "description": "The delete succeeded."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Delete a specific ContactAddress",
+        "operationId": "Delete One contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ContactAddress ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-delete"
+      },
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The find succeeded, and the results are available.",
+            "schema": {
+              "$ref": "schema:///model/ContactAddress"
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Find one ContactAddress",
+        "operationId": "Find By ID contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The ContactAddress ID",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-findByID"
+      }
+    },
+    "/contactaddress/distinct/{field}": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "Distinct fields response",
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Find distinct ContactAddress",
+        "operationId": "Distinct contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "field",
+            "description": "The field name that must be distinct.",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of records to fetch. The value must be greater than 0, and no greater than 1000.",
+            "required": false,
+            "type": "number",
+            "default": 10
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "description": "The number of records to skip. The value must not be less than 0.",
+            "required": false,
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "description": "Constrains values for fields. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "description": "A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "sel",
+            "description": "Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "unsel",
+            "description": "Selects which fields to not return from the query. Others are included. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Request page number starting from 1.",
+            "required": false,
+            "type": "number",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "description": "Number of results per page.",
+            "required": false,
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-distinct"
+      }
+    },
+    "/contactaddress/findAndModify": {
+      "put": {
+        "responses": {
+          "204": {
+            "description": "The find and modify succeeded.",
+            "schema": {
+              "$ref": "schema:///model/ContactAddress"
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Find and modify ContactAddresss",
+        "operationId": "Find and Modify contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Find and modify body",
+            "schema": {
+              "$ref": "schema:///model/ContactAddress"
+            }
+          },
+          {
+            "name": "new",
+            "in": "query",
+            "type": "boolean",
+            "description": "Set to true to return the new model instead of the original model."
+          },
+          {
+            "name": "upsert",
+            "in": "query",
+            "type": "boolean",
+            "description": "Set to true to allow the method to create a new model."
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of records to fetch. The value must be greater than 0, and no greater than 1000.",
+            "required": false,
+            "type": "number",
+            "default": 10
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "description": "The number of records to skip. The value must not be less than 0.",
+            "required": false,
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "description": "Constrains values for fields. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "description": "A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "sel",
+            "description": "Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "unsel",
+            "description": "Selects which fields to not return from the query. Others are included. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Request page number starting from 1.",
+            "required": false,
+            "type": "number",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "description": "Number of results per page.",
+            "required": false,
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-findAndModify"
+      }
+    },
+    "/contactaddress/count": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The count succeeded, and the results are available.",
+            "schema": {
+              "type": "integer"
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Count a ContactAddress",
+        "operationId": "Count contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of records to fetch. The value must be greater than 0, and no greater than 1000.",
+            "required": false,
+            "type": "number",
+            "default": 10
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "description": "The number of records to skip. The value must not be less than 0.",
+            "required": false,
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "description": "Constrains values for fields. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "description": "A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "sel",
+            "description": "Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "unsel",
+            "description": "Selects which fields to not return from the query. Others are included. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Request page number starting from 1.",
+            "required": false,
+            "type": "number",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "description": "Number of results per page.",
+            "required": false,
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-count"
+      }
+    },
+    "/contactaddress/upsert": {
+      "post": {
+        "responses": {
+          "201": {
+            "description": "The upsert succeeded, and resulted in an insert.",
+            "headers": {
+              "Location": {
+                "description": "The URL to the newly created instance.",
+                "type": "string"
+              }
+            }
+          },
+          "204": {
+            "description": "The upsert succeeded, and resulted in an update."
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Create or update a ContactAddress",
+        "operationId": "Upsert contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "data",
+            "in": "body",
+            "description": "Upsert body",
+            "schema": {
+              "allOf": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "description": "The ContactAddress ID"
+                    }
+                  }
+                },
+                {
+                  "$ref": "schema:///model/ContactAddress"
+                }
+              ]
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-upsert"
+      }
+    },
+    "/contactaddress/query": {
+      "get": {
+        "responses": {
+          "200": {
+            "description": "The query succeeded, and the results are available.",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "schema:///model/ContactAddress"
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request."
+          },
+          "401": {
+            "description": "This request requires user authentication, as configured by the server."
+          },
+          "404": {
+            "description": "No results were found."
+          },
+          "500": {
+            "description": "Something went wrong during the request; check out the logs on your server."
+          }
+        },
+        "description": "Query a ContactAddress",
+        "operationId": "Query contactaddress",
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "description": "The number of records to fetch. The value must be greater than 0, and no greater than 1000.",
+            "required": false,
+            "type": "number",
+            "default": 10
+          },
+          {
+            "in": "query",
+            "name": "skip",
+            "description": "The number of records to skip. The value must not be less than 0.",
+            "required": false,
+            "type": "number",
+            "default": 0
+          },
+          {
+            "in": "query",
+            "name": "where",
+            "description": "Constrains values for fields. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "order",
+            "description": "A dictionary of one or more fields specifying sorting of results. In general, you can sort based on any predefined field that you can query using the where operator, as well as on custom fields. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "sel",
+            "description": "Selects which fields to return from the query. Others are excluded. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "unsel",
+            "description": "Selects which fields to not return from the query. Others are included. The value should be encoded JSON.",
+            "required": false,
+            "type": "string",
+            "format": "json"
+          },
+          {
+            "in": "query",
+            "name": "page",
+            "description": "Request page number starting from 1.",
+            "required": false,
+            "type": "number",
+            "default": 1
+          },
+          {
+            "in": "query",
+            "name": "per_page",
+            "description": "Number of results per page.",
+            "required": false,
+            "type": "number",
+            "default": 10
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "ContactAddress"
+        ],
+        "x-flow": "contactaddress-query"
+      }
+    }
+  }
+}

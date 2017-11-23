@@ -1,0 +1,3262 @@
+{
+  "versioning": {
+    "element": "1.0.4",
+    "cehandler": "0.5.37",
+    "dynamic": false,
+    "vendor": "v3.0"
+  },
+  "bulkUploadEnabled": false,
+  "image": "http://assets.concur.com/logos/Concur_Logo_VT_Color_500px.png ",
+  "configuration": [
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "10000",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Timeout interval, defaults to 10 seconds",
+      "type": "TEXTFIELD_128",
+      "resellerConfig": false,
+      "required": true,
+      "hideFromConsole": true,
+      "name": "Timeout interval",
+      "groupControl": false,
+      "key": "timeout.interval"
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "cursor",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Concur Pagination Type",
+      "type": "TEXTFIELD_32",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "Pagination Type",
+      "groupControl": false,
+      "key": "pagination.type"
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "25",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Concur Max Page Size (or limit)",
+      "type": "TEXTFIELD_32",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "Max Page Size (or limit)",
+      "groupControl": false,
+      "key": "pagination.max"
+    },
+    {
+      "internal": true,
+      "companyConfig": false,
+      "defaultValue": "https://www.concursolutions.com/net2/oauth2/Login.aspx",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Concur Oauth Authorization URL",
+      "type": "TEXTFIELD_1000",
+      "resellerConfig": false,
+      "required": true,
+      "hideFromConsole": true,
+      "name": "OAuth Authorization URL",
+      "groupControl": false,
+      "key": "oauth.authorization.url"
+    },
+    {
+      "internal": false,
+      "hideFromConsole": true,
+      "companyConfig": false,
+      "displayOrder": 1,
+      "name": "OAuth Callback URL",
+      "active": true,
+      "description": "Concur Oauth Callback URL",
+      "type": "TEXTFIELD_1000",
+      "groupControl": false,
+      "resellerConfig": false,
+      "key": "oauth.callback.url",
+      "required": true
+    },
+    {
+      "internal": false,
+      "hideFromConsole": true,
+      "companyConfig": false,
+      "displayOrder": 1,
+      "name": "OAuth API Key",
+      "active": true,
+      "description": "Concur Oauth OAuth API Key",
+      "type": "TEXTFIELD_128",
+      "groupControl": false,
+      "resellerConfig": false,
+      "key": "oauth.api.key",
+      "required": true
+    },
+    {
+      "internal": true,
+      "hideFromConsole": true,
+      "companyConfig": false,
+      "displayOrder": 1,
+      "name": "OAuth Access Token",
+      "active": true,
+      "description": "Concur OAuth Access Token",
+      "type": "TEXTFIELD_32",
+      "groupControl": false,
+      "resellerConfig": false,
+      "key": "oauth.user.token",
+      "required": false
+    },
+    {
+      "internal": false,
+      "hideFromConsole": true,
+      "companyConfig": false,
+      "displayOrder": 1,
+      "name": "OAuth API Secret",
+      "active": true,
+      "description": "Concur Oauth API Secret",
+      "type": "TEXTFIELD_128",
+      "groupControl": false,
+      "resellerConfig": false,
+      "key": "oauth.api.secret",
+      "required": true
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "{}",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Bulk Relations",
+      "type": "TEXTAREA",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "Bulk Relations",
+      "groupControl": false,
+      "key": "bulk.relations"
+    },
+    {
+      "internal": true,
+      "hideFromConsole": true,
+      "companyConfig": false,
+      "displayOrder": 1,
+      "name": "OAuth Refresh Token",
+      "active": true,
+      "description": "Concur OAuth Refresh Token",
+      "type": "TEXTFIELD_64",
+      "groupControl": false,
+      "resellerConfig": false,
+      "key": "oauth.user.refresh_token",
+      "required": false
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "{\"oauth_response\":{\"vendorName\":\"oauth_response\",\"configuration\":[{\"type\":\"passThrough\",\"properties\":{\"fromVendor\":true,\"toVendor\":false}}],\"fields\":[{\"path\":\"access_token\",\"vendorPath\":\"Access_Token.Token\",\"type\":\"string\"},{\"path\":\"refresh_token\",\"vendorPath\":\"Access_Token.Refresh_Token\",\"type\":\"string\"},{\"path\":\"expires_in\",\"vendorPath\":\"Access_Token.Expiration_date\",\"configuration\":[{\"type\":\"transformDate\",\"properties\":{\"vendorPattern\":\"MM/dd/yyyy hh:mm:ss\",\"pattern\":\"milliseconds\"}}]}]}}",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Response Transformation to Transform to a OAuth Response",
+      "type": "TEXTAREA",
+      "resellerConfig": false,
+      "required": true,
+      "hideFromConsole": true,
+      "name": "Oauth Response Transformation",
+      "groupControl": false,
+      "key": "oauth.response.transformation"
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "true",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Bulk Add Metadata",
+      "type": "TEXTFIELD_128",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "Bulk Add Metadata",
+      "groupControl": false,
+      "key": "bulk.add_metadata"
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "true",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Concur OAuth basic header",
+      "type": "BOOLEAN",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "OAuth basic header",
+      "groupControl": false,
+      "key": "oauth.basic.header"
+    },
+    {
+      "internal": true,
+      "hideFromConsole": true,
+      "companyConfig": false,
+      "displayOrder": 1,
+      "name": "OAuth Refresh Time",
+      "active": true,
+      "description": "Concur OAuth Refresh Time",
+      "type": "TEXTFIELD_64",
+      "groupControl": false,
+      "resellerConfig": false,
+      "key": "oauth.user.refresh_time",
+      "required": false
+    },
+    {
+      "internal": true,
+      "companyConfig": false,
+      "defaultValue": "https://www.concursolutions.com/net2/oauth2/GetAccessToken.ashx",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Concur OAuth Token URL",
+      "type": "TEXTFIELD_1000",
+      "resellerConfig": false,
+      "required": true,
+      "hideFromConsole": true,
+      "name": "OAuth Token URL",
+      "groupControl": false,
+      "key": "oauth.token.url"
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "https://www.concursolutions.com/api/v3.0",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Concur Oauth Base URL",
+      "type": "TEXTFIELD_1000",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "Base URL",
+      "groupControl": false,
+      "key": "base.url"
+    },
+    {
+      "internal": true,
+      "companyConfig": false,
+      "defaultValue": "3600",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Concur OAuth Refresh Interval(s)",
+      "type": "TEXTFIELD_32",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "OAuth Refresh Interval (s)",
+      "groupControl": false,
+      "key": "oauth.user.refresh_interval"
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "LIST,CONFIG,ATTEND,ERECPT,EXPRPT,TRVPRF,TRVREQ,TWS,USER,INVPO,INVPMT,INVVEN,SUPSVC,INVTV",
+      "displayOrder": 1,
+      "active": true,
+      "description": "Concur OAuth Scope",
+      "type": "TEXTFIELD_64",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "OAuth Scope",
+      "groupControl": false,
+      "key": "oauth.scope"
+    },
+    {
+      "internal": true,
+      "companyConfig": false,
+      "defaultValue": "polling",
+      "displayOrder": 100,
+      "active": true,
+      "description": "Event Type",
+      "type": "TEXTFIELD_128",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": true,
+      "name": "Event Type",
+      "groupControl": false,
+      "key": "event.vendor.type"
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "15",
+      "displayOrder": 101,
+      "active": true,
+      "description": "Used for how often to poll the application (in minutes)",
+      "type": "TEXTFIELD_128",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": false,
+      "name": "Event poller refresh interval",
+      "groupControl": false,
+      "key": "event.poller.refresh_interval"
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "false",
+      "displayOrder": 102,
+      "active": true,
+      "description": "Enable/Disable Event Notification",
+      "type": "BOOLEAN",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": false,
+      "name": "Event Notifications Enabled",
+      "groupControl": false,
+      "key": "event.notification.enabled"
+    },
+    {
+      "internal": false,
+      "hideFromConsole": false,
+      "companyConfig": false,
+      "displayOrder": 103,
+      "name": "Event Notification Callback URL",
+      "active": true,
+      "description": "Event Notification Callback URL",
+      "type": "TEXTFIELD_1000",
+      "groupControl": false,
+      "resellerConfig": false,
+      "key": "event.notification.callback.url",
+      "required": false
+    },
+    {
+      "internal": false,
+      "companyConfig": false,
+      "defaultValue": "{}",
+      "displayOrder": 104,
+      "active": true,
+      "description": "Event Poller Resources Configuration. The configuration is defined via JSON, an example of which is as follows - { \"contacts\": { \"url\": \"/hubs/helpdesk/contacts\", Ã¢idFieldÃ¢: Ã¢user.idÃ¢, Ã¢datesConfigurationÃ¢: { \"updatedDateField\": \"user.updated_at\", \"updatedDateFormat\": \"yyyy-MM-dd'T'HH:mm:ssX\", Ã¢createdDateFieldÃ¢: Ã¢user.created_atÃ¢, Ã¢createdDateFormat\": \"yyyy-MM-dd'T'HH:mm:ssX\" }, \"pageSize\": 10000 } }",
+      "type": "TEXTAREA",
+      "resellerConfig": false,
+      "required": false,
+      "hideFromConsole": false,
+      "name": "Event Poller Resources Configuration",
+      "groupControl": false,
+      "key": "event.poller.configuration"
+    },
+    {
+      "internal": false,
+      "hideFromConsole": false,
+      "companyConfig": false,
+      "displayOrder": 104,
+      "name": "Event Notification Signature Key",
+      "active": true,
+      "description": "A key used to generate a validation hash of the event notification webhook callback payload",
+      "type": "TEXTFIELD_128",
+      "groupControl": false,
+      "resellerConfig": false,
+      "key": "event.notification.signature.key",
+      "required": false
+    }
+  ],
+  "objects": [],
+  "active": true,
+  "description": "Concur offers services for optimizing business travel, expense and invoice management. These cloud-based services integrate with each other and connect to spending wherever it happens to give organizations total visibility into their spend.",
+  "resources": [
+    {
+      "method": "GET",
+      "nextResource": "",
+      "description": "Gets all attendees owned by the specified user.",
+      "type": "api",
+      "vendorPath": "/expense/attendees",
+      "nextPageKey": "body.NextPage?offset",
+      "path": "/attendees",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "GET",
+      "response": {
+        "sampleData": "[{\"OwnerName\":\"Elements, Claude\",\"HasExceptionsPrevYear\":false,\"OwnerLoginID\":\"developer@cloud-elements.com\",\"FirstName\":\"John\",\"HasExceptionsYTD\":false,\"AttendeeTypeCode\":\"BUSGUEST\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/attendees/gWnfI$p2dqmtrvxjLySV0aulNjzMMxikPVmg\",\"VersionNumber\":1,\"CurrencyCode\":\"USD\",\"TotalAmountPrevYear\":0,\"TotalAmountYTD\":0,\"ID\":\"gWnfI$p2dqmtrvxjLySV0aulNjzMMxikPVmg\",\"LastName\":\"Samuel\",\"AttendeeTypeID\":\"gWjYIioFpAOZmDl9BGbV0fhEayhtLMQ\"}]",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "model": {
+        "transform": false,
+        "name": "attendeeList",
+        "swagger": {
+          "attendee": {
+            "id": "attendee",
+            "properties": {
+              "Company": {
+                "type": "CustomField"
+              },
+              "Custom19": {
+                "type": "CustomField"
+              },
+              "OwnerName": {
+                "type": "string"
+              },
+              "Custom18": {
+                "type": "CustomField"
+              },
+              "ExternalID": {
+                "type": "string"
+              },
+              "Custom13": {
+                "type": "CustomField"
+              },
+              "Custom12": {
+                "type": "CustomField"
+              },
+              "Custom11": {
+                "type": "CustomField"
+              },
+              "HasExceptionsYTD": {
+                "type": "boolean"
+              },
+              "Custom10": {
+                "type": "CustomField"
+              },
+              "AttendeeTypeCode": {
+                "type": "string"
+              },
+              "Custom17": {
+                "type": "CustomField"
+              },
+              "Custom16": {
+                "type": "CustomField"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Custom15": {
+                "type": "CustomField"
+              },
+              "Custom14": {
+                "type": "CustomField"
+              },
+              "CurrencyCode": {
+                "type": "string"
+              },
+              "MiddleInitial": {
+                "type": "string"
+              },
+              "TotalAmountPrevYear": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "TotalAmountYTD": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "AttendeeTypeID": {
+                "type": "string"
+              },
+              "HasExceptionsPrevYear": {
+                "type": "boolean"
+              },
+              "OwnerLoginID": {
+                "type": "string"
+              },
+              "FirstName": {
+                "type": "string"
+              },
+              "Custom24": {
+                "type": "CustomField"
+              },
+              "Custom23": {
+                "type": "CustomField"
+              },
+              "Title": {
+                "type": "CustomField"
+              },
+              "Custom22": {
+                "type": "CustomField"
+              },
+              "Custom21": {
+                "type": "CustomField"
+              },
+              "VersionNumber": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "Custom25": {
+                "type": "CustomField"
+              },
+              "Custom4": {
+                "type": "CustomField"
+              },
+              "Custom3": {
+                "type": "CustomField"
+              },
+              "Custom2": {
+                "type": "CustomField"
+              },
+              "Custom1": {
+                "type": "Custom1"
+              },
+              "Suffix": {
+                "type": "CustomField"
+              },
+              "Custom20": {
+                "type": "CustomField"
+              },
+              "Custom8": {
+                "type": "CustomField"
+              },
+              "Custom7": {
+                "type": "CustomField"
+              },
+              "Custom6": {
+                "type": "CustomField"
+              },
+              "Custom5": {
+                "type": "CustomField"
+              },
+              "Custom9": {
+                "type": "CustomField"
+              },
+              "LastName": {
+                "type": "string"
+              }
+            }
+          },
+          "CustomField": {
+            "id": "CustomField",
+            "properties": {
+              "ListItemID": {
+                "type": "string"
+              },
+              "Type": {
+                "type": "string"
+              },
+              "Value": {
+                "type": "string"
+              },
+              "Code": {
+                "type": "string"
+              }
+            }
+          },
+          "attendeeList": {
+            "id": "attendeeList",
+            "type": "array",
+            "items": {
+              "$ref": "attendee"
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID of the user that has added the attendee to an expense. ",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "sampleData": "25",
+          "dataType": "string",
+          "name": "pageSize",
+          "description": "The number of resources to return in a given page",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "limit",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "sampleData": "gWk$poAs$s2X0PNDjRKgZvfo9$pR1WpB",
+          "dataType": "string",
+          "name": "nextPage",
+          "description": "The page number of resources to retrieve",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "offset",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "externalID",
+          "description": "The external ID of an attendee",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "externalID",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "attendeeTypeID",
+          "description": "The ID of an attendee type",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "attendeeTypeID",
+          "required": false
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "POST",
+      "nextResource": "",
+      "description": "Creates a new attendee.",
+      "type": "api",
+      "vendorPath": "/expense/attendees",
+      "nextPageKey": "",
+      "path": "/attendees",
+      "paginationType": "",
+      "vendorMethod": "POST",
+      "response": {
+        "sampleData": "{\"ID\":\"gWnfI$p2dqmqKfcNd3b7$sO3GsUqXjrYiL5Tw\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/attendees/gWnfI$p2dqmqKfcNd3b7$sO3GsUqXjrYiL5Tw\"}",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "requestName": "attendeesPost",
+        "transform": false,
+        "name": "attendee",
+        "swagger": {
+          "attendee": {
+            "id": "attendee",
+            "properties": {
+              "Company": {
+                "type": "CustomField"
+              },
+              "Custom19": {
+                "type": "CustomField"
+              },
+              "OwnerName": {
+                "type": "string"
+              },
+              "Custom18": {
+                "type": "CustomField"
+              },
+              "ExternalID": {
+                "type": "string"
+              },
+              "Custom13": {
+                "type": "CustomField"
+              },
+              "Custom12": {
+                "type": "CustomField"
+              },
+              "Custom11": {
+                "type": "CustomField"
+              },
+              "HasExceptionsYTD": {
+                "type": "boolean"
+              },
+              "Custom10": {
+                "type": "CustomField"
+              },
+              "AttendeeTypeCode": {
+                "type": "string"
+              },
+              "Custom17": {
+                "type": "CustomField"
+              },
+              "Custom16": {
+                "type": "CustomField"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Custom15": {
+                "type": "CustomField"
+              },
+              "Custom14": {
+                "type": "CustomField"
+              },
+              "CurrencyCode": {
+                "type": "string"
+              },
+              "MiddleInitial": {
+                "type": "string"
+              },
+              "TotalAmountPrevYear": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "TotalAmountYTD": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "AttendeeTypeID": {
+                "type": "string"
+              },
+              "HasExceptionsPrevYear": {
+                "type": "boolean"
+              },
+              "OwnerLoginID": {
+                "type": "string"
+              },
+              "FirstName": {
+                "type": "string"
+              },
+              "Custom24": {
+                "type": "CustomField"
+              },
+              "Custom23": {
+                "type": "CustomField"
+              },
+              "Title": {
+                "type": "CustomField"
+              },
+              "Custom22": {
+                "type": "CustomField"
+              },
+              "Custom21": {
+                "type": "CustomField"
+              },
+              "VersionNumber": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "Custom25": {
+                "type": "CustomField"
+              },
+              "Custom4": {
+                "type": "CustomField"
+              },
+              "Custom3": {
+                "type": "CustomField"
+              },
+              "Custom2": {
+                "type": "CustomField"
+              },
+              "Custom1": {
+                "type": "Custom1"
+              },
+              "Suffix": {
+                "type": "CustomField"
+              },
+              "Custom20": {
+                "type": "CustomField"
+              },
+              "Custom8": {
+                "type": "CustomField"
+              },
+              "Custom7": {
+                "type": "CustomField"
+              },
+              "Custom6": {
+                "type": "CustomField"
+              },
+              "Custom5": {
+                "type": "CustomField"
+              },
+              "Custom9": {
+                "type": "CustomField"
+              },
+              "LastName": {
+                "type": "string"
+              }
+            }
+          },
+          "CustomField": {
+            "id": "CustomField",
+            "properties": {
+              "ListItemID": {
+                "type": "string"
+              },
+              "Type": {
+                "type": "string"
+              },
+              "Value": {
+                "type": "string"
+              },
+              "Code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID of the user that has added the attendee to an expense",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        },
+        {
+          "vendorType": "body",
+          "sampleData": "{\"CurrencyCode\":\"USD\",\"OwnerName\":\"Elements, Claude\",\"FirstName\":\"Claude\",\"ExternalID\":\"test@cloud-elements.com\",\"TotalAmountPrevYear\":0,\"TotalAmountYTD\":0,\"LastName\":\"Elements\",\"AttendeeTypeID\":\"gWjYIioJrIwLMmDyXZ4JiPuGppeMbMw\",\"VersionNumber\":1}",
+          "dataType": "attendee",
+          "name": "body",
+          "description": "The Attendee object to create.",
+          "vendorDataType": "attendee",
+          "source": "request",
+          "type": "body",
+          "vendorName": "content",
+          "required": true
+        }
+      ],
+      "rootKey": "|Attendees"
+    },
+    {
+      "method": "DELETE",
+      "nextResource": "",
+      "description": "Deletes the specified attendee.",
+      "type": "api",
+      "vendorPath": "/expense/attendees/{id}",
+      "nextPageKey": "",
+      "path": "/attendees/{attendeesId}",
+      "paginationType": "",
+      "vendorMethod": "DELETE",
+      "response": {
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "path",
+          "sampleData": "gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA",
+          "dataType": "string",
+          "name": "attendeesId",
+          "description": "The ID of the attendee to delete.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID of the user that has added the attendee to an expense",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        }
+      ],
+      "rootKey": "|Attendees"
+    },
+    {
+      "method": "GET",
+      "nextResource": "",
+      "description": "Gets a single attendee by ID.",
+      "type": "api",
+      "vendorPath": "/expense/attendees/{id}",
+      "nextPageKey": "",
+      "path": "/attendees/{attendeesId}",
+      "paginationType": "",
+      "vendorMethod": "GET",
+      "response": {
+        "sampleData": "{\"OwnerName\":\"Elements, Claude\",\"HasExceptionsPrevYear\":false,\"OwnerLoginID\":\"developer@cloud-elements.com\",\"FirstName\":\"Claude\",\"ExternalID\":\"developer@cloud-elements.com\",\"HasExceptionsYTD\":false,\"AttendeeTypeCode\":\"SYSEMP\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/attendees/gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA\",\"VersionNumber\":1,\"CurrencyCode\":\"USD\",\"TotalAmountPrevYear\":0.0,\"TotalAmountYTD\":0.0,\"ID\":\"gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA\",\"LastName\":\"Elementssss\",\"AttendeeTypeID\":\"gWjYIioJrIwLMmDyXZ4JiPuGppeMbMw\"}",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "transform": false,
+        "name": "attendee",
+        "swagger": {
+          "attendee": {
+            "id": "attendee",
+            "properties": {
+              "Company": {
+                "type": "CustomField"
+              },
+              "Custom19": {
+                "type": "CustomField"
+              },
+              "OwnerName": {
+                "type": "string"
+              },
+              "Custom18": {
+                "type": "CustomField"
+              },
+              "ExternalID": {
+                "type": "string"
+              },
+              "Custom13": {
+                "type": "CustomField"
+              },
+              "Custom12": {
+                "type": "CustomField"
+              },
+              "Custom11": {
+                "type": "CustomField"
+              },
+              "HasExceptionsYTD": {
+                "type": "boolean"
+              },
+              "Custom10": {
+                "type": "CustomField"
+              },
+              "AttendeeTypeCode": {
+                "type": "string"
+              },
+              "Custom17": {
+                "type": "CustomField"
+              },
+              "Custom16": {
+                "type": "CustomField"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Custom15": {
+                "type": "CustomField"
+              },
+              "Custom14": {
+                "type": "CustomField"
+              },
+              "CurrencyCode": {
+                "type": "string"
+              },
+              "MiddleInitial": {
+                "type": "string"
+              },
+              "TotalAmountPrevYear": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "TotalAmountYTD": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "AttendeeTypeID": {
+                "type": "string"
+              },
+              "HasExceptionsPrevYear": {
+                "type": "boolean"
+              },
+              "OwnerLoginID": {
+                "type": "string"
+              },
+              "FirstName": {
+                "type": "string"
+              },
+              "Custom24": {
+                "type": "CustomField"
+              },
+              "Custom23": {
+                "type": "CustomField"
+              },
+              "Title": {
+                "type": "CustomField"
+              },
+              "Custom22": {
+                "type": "CustomField"
+              },
+              "Custom21": {
+                "type": "CustomField"
+              },
+              "VersionNumber": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "Custom25": {
+                "type": "CustomField"
+              },
+              "Custom4": {
+                "type": "CustomField"
+              },
+              "Custom3": {
+                "type": "CustomField"
+              },
+              "Custom2": {
+                "type": "CustomField"
+              },
+              "Custom1": {
+                "type": "Custom1"
+              },
+              "Suffix": {
+                "type": "CustomField"
+              },
+              "Custom20": {
+                "type": "CustomField"
+              },
+              "Custom8": {
+                "type": "CustomField"
+              },
+              "Custom7": {
+                "type": "CustomField"
+              },
+              "Custom6": {
+                "type": "CustomField"
+              },
+              "Custom5": {
+                "type": "CustomField"
+              },
+              "Custom9": {
+                "type": "CustomField"
+              },
+              "LastName": {
+                "type": "string"
+              }
+            }
+          },
+          "CustomField": {
+            "id": "CustomField",
+            "properties": {
+              "ListItemID": {
+                "type": "string"
+              },
+              "Type": {
+                "type": "string"
+              },
+              "Value": {
+                "type": "string"
+              },
+              "Code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "path",
+          "sampleData": "gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA",
+          "dataType": "string",
+          "name": "attendeesId",
+          "description": "The attendee ID.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID of the user that has added the attendee to an expense.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        }
+      ],
+      "rootKey": ""
+    },
+    {
+      "method": "PATCH",
+      "nextResource": "",
+      "description": "Updates the specified attendee. Only the fields provided in the supplied object are updated. Missing fields are not altered.",
+      "type": "api",
+      "vendorPath": "/expense/attendees/{id}",
+      "nextPageKey": "",
+      "path": "/attendees/{attendeesId}",
+      "paginationType": "",
+      "vendorMethod": "PUT",
+      "response": {
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "requestName": "",
+        "transform": false,
+        "name": ""
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "body",
+          "sampleData": "{\"LastName\":\"Elementssss\"}",
+          "dataType": "attendee",
+          "name": "body",
+          "description": "The partial or complete Attendee object to update.",
+          "vendorDataType": "attendee",
+          "source": "request",
+          "type": "body",
+          "vendorName": "content",
+          "required": true
+        },
+        {
+          "vendorType": "path",
+          "sampleData": "gWnfI$p2dqmtrswoZF9O9BzK98HptDcCJxgA",
+          "dataType": "string",
+          "name": "attendeesId",
+          "description": "The attendee ID.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID of the user that has added the Attendee to an expense",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        }
+      ],
+      "rootKey": "|Attendees"
+    },
+    {
+      "method": "GET",
+      "nextResource": "",
+      "description": "Get Lists",
+      "type": "api",
+      "vendorPath": "/common/lists",
+      "nextPageKey": "body.NextPage?offset",
+      "path": "/lists",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "GET",
+      "response": {
+        "sampleData": "[{\"DisplayCodeFirst\":true,\"IsVendorList\":true,\"SearchCriteriaCode\":\"TEXT\",\"ID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/lists/gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"Name\":\"Vendors - Travel Agents\"}]",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "model": {
+        "transform": false,
+        "name": "listList",
+        "swagger": {
+          "list": {
+            "id": "list",
+            "properties": {
+              "DisplayCodeFirst": {
+                "type": "boolean"
+              },
+              "Level7Code": {
+                "type": "string"
+              },
+              "Level2Code": {
+                "type": "string"
+              },
+              "IsVendorList": {
+                "type": "boolean"
+              },
+              "Level4Code": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Level6Code": {
+                "type": "string"
+              },
+              "Level8Code": {
+                "type": "string"
+              },
+              "Name": {
+                "type": "string"
+              },
+              "Level1Code": {
+                "type": "string"
+              },
+              "SearchCriteriaCode": {
+                "type": "string"
+              },
+              "ExternalThreshold": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "Level3Code": {
+                "type": "string"
+              },
+              "Level5Code": {
+                "type": "string"
+              },
+              "Level9Code": {
+                "type": "string"
+              },
+              "ConnectorID": {
+                "type": "string"
+              }
+            }
+          },
+          "listList": {
+            "id": "listList",
+            "type": "array",
+            "items": {
+              "$ref": "list"
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "nextPage",
+          "description": "The page number of resources to retrieve",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "offset",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "sampleData": "25",
+          "dataType": "number",
+          "name": "pageSize",
+          "description": "The number of resources to return in a given page",
+          "vendorDataType": "number",
+          "source": "request",
+          "type": "query",
+          "vendorName": "limit",
+          "required": false
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "POST",
+      "nextResource": "",
+      "description": "Create a new List",
+      "type": "api",
+      "vendorPath": "/common/lists",
+      "nextPageKey": "",
+      "path": "/lists",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "POST",
+      "response": {
+        "sampleData": "{\"ID\":\"gWrB3eM9ePjWVOsYhQzIYAsfy$snsxBt9oLQ\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/lists/gWrB3eM9ePjWVOsYhQzIYAsfy$snsxBt9oLQ\"}",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "requestName": "list",
+        "transform": false,
+        "name": "lists",
+        "requestSwagger": {
+          "list": {
+            "id": "list",
+            "properties": {
+              "DisplayCodeFirst": {
+                "type": "boolean"
+              },
+              "IsVendorList": {
+                "type": "boolean"
+              },
+              "SearchCriteriaCode": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Name": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "swagger": {
+          "lists": {
+            "id": "lists",
+            "properties": {
+              "ID": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "body",
+          "sampleData": "{\"DisplayCodeFirst\":true,\"IsVendorList\":true,\"SearchCriteriaCode\":\"TEXT\",\"ID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/lists/gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"Name\":\"Vendors - Travel Agents\"}",
+          "dataType": "list",
+          "name": "body",
+          "description": "JSON of the list to create",
+          "vendorDataType": "list",
+          "source": "request",
+          "type": "body",
+          "vendorName": "body",
+          "required": true
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "GET",
+      "nextResource": "",
+      "description": "Get Lists",
+      "type": "api",
+      "vendorPath": "/common/lists/{id}",
+      "nextPageKey": "",
+      "path": "/lists/{listId}",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "GET",
+      "response": {
+        "sampleData": "{\"DisplayCodeFirst\":true,\"IsVendorList\":true,\"SearchCriteriaCode\":\"TEXT\",\"ID\":\"gWvcho1i38r4DvacV2n3oQ8ZKP5peSe7Mkg\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/lists/gWvcho1i38r4DvacV2n3oQ8ZKP5peSe7Mkg\",\"Name\":\"Vendors - Travel Agents\"}",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "model": {
+        "transform": false,
+        "name": "list",
+        "swagger": {
+          "list": {
+            "id": "list",
+            "properties": {
+              "DisplayCodeFirst": {
+                "type": "boolean"
+              },
+              "Level7Code": {
+                "type": "string"
+              },
+              "Level2Code": {
+                "type": "string"
+              },
+              "IsVendorList": {
+                "type": "boolean"
+              },
+              "Level4Code": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Level6Code": {
+                "type": "string"
+              },
+              "Level8Code": {
+                "type": "string"
+              },
+              "Name": {
+                "type": "string"
+              },
+              "Level1Code": {
+                "type": "string"
+              },
+              "SearchCriteriaCode": {
+                "type": "string"
+              },
+              "ExternalThreshold": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "Level3Code": {
+                "type": "string"
+              },
+              "Level5Code": {
+                "type": "string"
+              },
+              "Level9Code": {
+                "type": "string"
+              },
+              "ConnectorID": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "path",
+          "sampleData": "gWvcho1i38r4DvacV2n3oQ8ZKP5peSe7Mkg",
+          "dataType": "string",
+          "name": "listId",
+          "description": "ID of the list to retreive",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "PATCH",
+      "nextResource": "",
+      "description": "Create a new List",
+      "type": "api",
+      "vendorPath": "/common/lists/{id}",
+      "nextPageKey": "",
+      "path": "/lists/{listId}",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "PUT",
+      "response": {
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "model": {
+        "requestName": "",
+        "transform": false,
+        "name": ""
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "path",
+          "sampleData": "gWvcho1i38r4DvacV2n3oQ8ZKP5peSe7Mkg",
+          "dataType": "string",
+          "name": "listId",
+          "description": "List ID",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        },
+        {
+          "vendorType": "body",
+          "sampleData": "{\"Name\":\"Vendors - Travel Agents2\"}",
+          "dataType": "list",
+          "name": "body",
+          "description": "JSON of the list to create",
+          "vendorDataType": "list",
+          "source": "request",
+          "type": "body",
+          "vendorName": "body",
+          "required": true
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "GET",
+      "nextResource": "",
+      "description": "Get or Search for Expense Reports.",
+      "type": "api",
+      "vendorPath": "/common/listitems",
+      "nextPageKey": "body.NextPage?offset",
+      "path": "/lists/{listId}/items",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "GET",
+      "response": {
+        "sampleData": "[{\"Level1Code\":\"American Express Travel\",\"ListID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"ID\":\"gWqnR7mLiHogNgQAID0ZUjEMxaMBOT3VnZw\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/listitems/gWqnR7mLiHogNgQAID0ZUjEMxaMBOT3VnZw\",\"Name\":\"American Express Travel\"}]",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "transform": false,
+        "name": "itemList",
+        "swagger": {
+          "item": {
+            "id": "item",
+            "properties": {
+              "Level7Code": {
+                "type": "string"
+              },
+              "ParentID": {
+                "type": "unknown"
+              },
+              "Level2Code": {
+                "type": "string"
+              },
+              "Level4Code": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Level6Code": {
+                "type": "string"
+              },
+              "Level8Code": {
+                "type": "string"
+              },
+              "Name": {
+                "type": "string"
+              },
+              "Level1Code": {
+                "type": "string"
+              },
+              "Level10Code": {
+                "type": "string"
+              },
+              "ListID": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "Level3Code": {
+                "type": "string"
+              },
+              "Level5Code": {
+                "type": "string"
+              },
+              "Level9Code": {
+                "type": "string"
+              }
+            }
+          },
+          "itemList": {
+            "id": "itemList",
+            "type": "array",
+            "items": {
+              "$ref": "item"
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "listId",
+          "description": "The unique identifier for the list this item is a member of.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "listId",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level9Code",
+          "description": "\t The item code for the ninth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level9Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level8Code",
+          "description": "The item code for the eighth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level8Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level7Code",
+          "description": "\t The item code for the seventh level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level7Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level6Code",
+          "description": "The item code for the sixth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level6Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level10Code",
+          "description": "\t The item code for the tenth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level10Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level1Code",
+          "description": "The item code for the first level of the list. All lists have at least a Level1Code. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level1Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level2Code",
+          "description": "The item code for the second level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level2Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level3Code",
+          "description": "\t The item code for the third level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level3Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level4Code",
+          "description": "The item code for the fourth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level4Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "level5Code",
+          "description": "The item code for the fifth level of the list. Empty when this level doesn't exist in the list. Text maximum 32 characters",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "level5Code",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "name",
+          "description": "The name of the listItem. Text Max length: 64.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "name",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "sampleData": "gWjAxqYy$pQyJy7ybPvoC2I0xzLqLbYb4ZXA",
+          "dataType": "string",
+          "name": "nextPage",
+          "description": "The page number of resources to retrieve",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "offset",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "parentId",
+          "description": "The unique identifier of this item's parent. Is empty when there is no parent.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "parentId",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "sampleData": "25",
+          "dataType": "number",
+          "name": "pageSize",
+          "description": "The number of resources to return in a given page",
+          "vendorDataType": "number",
+          "source": "request",
+          "type": "query",
+          "vendorName": "limit",
+          "required": false
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "POST",
+      "nextResource": "",
+      "description": "Create an Item ",
+      "type": "api",
+      "vendorPath": "/common/listitems",
+      "nextPageKey": "",
+      "path": "/lists/{listId}/items",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "POST",
+      "response": {
+        "sampleData": "{\"ID\":\"gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/listitems/gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw\"}",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "model": {
+        "requestName": "items",
+        "transform": false,
+        "name": "item",
+        "swagger": {
+          "item": {
+            "id": "item",
+            "properties": {
+              "Level7Code": {
+                "type": "string"
+              },
+              "ParentID": {
+                "type": "unknown"
+              },
+              "Level2Code": {
+                "type": "string"
+              },
+              "Level4Code": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Level6Code": {
+                "type": "string"
+              },
+              "Level8Code": {
+                "type": "string"
+              },
+              "Name": {
+                "type": "string"
+              },
+              "Level1Code": {
+                "type": "string"
+              },
+              "Level10Code": {
+                "type": "string"
+              },
+              "ListID": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "Level3Code": {
+                "type": "string"
+              },
+              "Level5Code": {
+                "type": "string"
+              },
+              "Level9Code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "bodyField",
+          "dataType": "string",
+          "name": "listId",
+          "description": "The list ID",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "ListID",
+          "required": true
+        },
+        {
+          "vendorType": "body",
+          "sampleData": "{\"Level1Code\":\"Rosenbluth\",\"ListID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"Name\":\"Rosenbluth International\"}",
+          "dataType": "item",
+          "name": "body",
+          "description": "Post Body for Creating a List Item in Concur",
+          "vendorDataType": "item",
+          "source": "request",
+          "type": "body",
+          "vendorName": "body",
+          "required": true
+        }
+      ]
+    },
+    {
+      "method": "DELETE",
+      "nextResource": "",
+      "description": "Delete an Item",
+      "type": "api",
+      "vendorPath": "/common/listitems/{id}",
+      "nextPageKey": "",
+      "path": "/lists/{listId}/items/{ID}",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "DELETE",
+      "response": {
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "path",
+          "dataType": "string",
+          "name": "ID",
+          "description": "ID of the Item to retrieve",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "listId",
+          "description": "ListID of the Item",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "listId",
+          "required": true
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "GET",
+      "nextResource": "",
+      "description": "Get or Search for Expense Reports.",
+      "type": "api",
+      "vendorPath": "/common/listitems/{id}",
+      "nextPageKey": "",
+      "path": "/lists/{listId}/items/{ID}",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "GET",
+      "response": {
+        "sampleData": "{\"Level1Code\":\"Rosenbluth\",\"ListID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"ID\":\"gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw\",\"URI\":\"https://www.concursolutions.com/api/v3.0/common/listitems/gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw/gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw\",\"Name\":\"Rosenbluth International\"}",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "transform": false,
+        "name": "item",
+        "swagger": {
+          "item": {
+            "id": "item",
+            "properties": {
+              "Level7Code": {
+                "type": "string"
+              },
+              "ParentID": {
+                "type": "unknown"
+              },
+              "Level2Code": {
+                "type": "string"
+              },
+              "Level4Code": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "Level6Code": {
+                "type": "string"
+              },
+              "Level8Code": {
+                "type": "string"
+              },
+              "Name": {
+                "type": "string"
+              },
+              "Level1Code": {
+                "type": "string"
+              },
+              "Level10Code": {
+                "type": "string"
+              },
+              "ListID": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "Level3Code": {
+                "type": "string"
+              },
+              "Level5Code": {
+                "type": "string"
+              },
+              "Level9Code": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "path",
+          "sampleData": "gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw",
+          "dataType": "string",
+          "name": "ID",
+          "description": "The unique identifier for the listItem.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        },
+        {
+          "vendorType": "query",
+          "sampleData": "gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg",
+          "dataType": "string",
+          "name": "listId",
+          "description": "The unique identifier for the list this item is a member of.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "listId",
+          "required": false
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "PATCH",
+      "nextResource": "",
+      "description": "Get or Search for Expense Reports.",
+      "type": "api",
+      "vendorPath": "/common/listitems/{id}",
+      "nextPageKey": "",
+      "path": "/lists/{listId}/items/{ID}",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "PUT",
+      "response": {
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "requestName": "",
+        "transform": false,
+        "name": ""
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "path",
+          "sampleData": "gWqnR7mLiG$p55LpbOfIdg2zeurMLK1BBKFw",
+          "dataType": "string",
+          "name": "ID",
+          "description": "ID of the Item to retrieve",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        },
+        {
+          "vendorType": "bodyField",
+          "dataType": "string",
+          "name": "listId",
+          "description": "The list ID",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "ListID",
+          "required": true
+        },
+        {
+          "vendorType": "body",
+          "sampleData": "{\"ListID\":\"gWvcho1i39rwCp0PpScjV7L$p8WKmh0S5LHg\",\"Name\":\"Rosenbluth internateeeonal\"}",
+          "dataType": "item",
+          "name": "body",
+          "description": "Item to be updated. Only supplied attributes will be updated",
+          "vendorDataType": "item",
+          "source": "request",
+          "type": "body",
+          "vendorName": "body",
+          "required": true
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "GET",
+      "nextResource": "",
+      "description": "Get or Search for Expense Reports.",
+      "type": "api",
+      "vendorPath": "/expense/reports",
+      "nextPageKey": "body.NextPage?offset",
+      "path": "/reports",
+      "paginationType": "VENDOR_SUPPORTED",
+      "vendorMethod": "GET",
+      "response": {
+        "sampleData": "[{\"LastModifiedDate\":\"2016-01-19T22:53:23.117\",\"TotalApprovedAmount\":100,\"OwnerName\":\"Claude Elements\",\"ReceiptsReceived\":false,\"ApprovalStatusCode\":\"A_NOTF\",\"CreateDate\":\"2016-01-12T18:14:05.997\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/reports/EEC0470383234B499D69\",\"Custom15\":{\"ListItemID\":\"gWqnR7mLiH4wIPgMTR5mkTdweEMehX65RXg\",\"Type\":\"List\",\"Value\":\"United States\",\"Code\":\"US\"},\"Name\":\"Test\",\"CurrencyCode\":\"USD\",\"TotalClaimedAmount\":100,\"LastComment\":\"This is a test.\",\"ID\":\"EEC0470383234B499D69\",\"LedgerName\":\"DEFAULT\",\"PaymentStatusName\":\"Not Paid\",\"PolicyID\":\"gWmE4dLVp18lVTntnORioeMY71r$pUo$smw5Q\",\"WorkflowActionUrl\":\"\",\"OwnerLoginID\":\"developer@cloud-elements.com\",\"UserDefinedDate\":\"2016-01-12T00:00:00\",\"AmountDueCompanyCard\":0,\"HasException\":true,\"EverSentBack\":false,\"PersonalAmount\":0,\"ApprovalStatusName\":\"Not Submitted\",\"Total\":100,\"Country\":\"US\",\"AmountDueEmployee\":100,\"PaymentStatusCode\":\"P_NOTP\"}]",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "transform": false,
+        "name": "reportList",
+        "swagger": {
+          "CustomField": {
+            "id": "CustomField",
+            "properties": {
+              "ListItemID": {
+                "type": "string"
+              },
+              "Type": {
+                "type": "string"
+              },
+              "Value": {
+                "type": "string"
+              },
+              "Code": {
+                "type": "string"
+              }
+            }
+          },
+          "report": {
+            "id": "report",
+            "properties": {
+              "LastModifiedDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom19": {
+                "type": "CustomField"
+              },
+              "Custom18": {
+                "type": "CustomField"
+              },
+              "SubmitDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom13": {
+                "type": "CustomField"
+              },
+              "ApproverLoginID": {
+                "type": "string"
+              },
+              "Custom12": {
+                "type": "CustomField"
+              },
+              "Custom11": {
+                "type": "CustomField"
+              },
+              "ReceiptsReceived": {
+                "type": "boolean"
+              },
+              "Custom10": {
+                "type": "CustomField"
+              },
+              "ApprovalStatusCode": {
+                "type": "string"
+              },
+              "Custom17": {
+                "type": "CustomField"
+              },
+              "CreateDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom16": {
+                "type": "CustomField"
+              },
+              "Custom15": {
+                "type": "CustomField"
+              },
+              "Custom14": {
+                "type": "CustomField"
+              },
+              "Name": {
+                "type": "string"
+              },
+              "CurrencyCode": {
+                "type": "string"
+              },
+              "TotalClaimedAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "LastComment": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "LedgerName": {
+                "type": "string"
+              },
+              "PaymentStatusName": {
+                "type": "string"
+              },
+              "PolicyID": {
+                "type": "string"
+              },
+              "WorkflowActionUrl": {
+                "type": "string"
+              },
+              "OwnerLoginID": {
+                "type": "string"
+              },
+              "AmountDueCompanyCard": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "HasException": {
+                "type": "boolean"
+              },
+              "CountrySubdivision": {
+                "type": "string"
+              },
+              "Custom4": {
+                "type": "CustomField"
+              },
+              "EverSentBack": {
+                "type": "boolean"
+              },
+              "Custom3": {
+                "type": "CustomField"
+              },
+              "Custom2": {
+                "type": "CustomField"
+              },
+              "ApprovalStatusName": {
+                "type": "string"
+              },
+              "Custom1": {
+                "type": "CustomField"
+              },
+              "Custom8": {
+                "type": "CustomField"
+              },
+              "Custom7": {
+                "type": "CustomField"
+              },
+              "ProcessingPaymentDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom6": {
+                "type": "CustomField"
+              },
+              "Custom5": {
+                "type": "CustomField"
+              },
+              "Country": {
+                "type": "string"
+              },
+              "Custom9": {
+                "type": "CustomField"
+              },
+              "PaymentStatusCode": {
+                "type": "string"
+              },
+              "TotalApprovedAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "OwnerName": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "PaidDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "ApproverName": {
+                "type": "string"
+              },
+              "UserDefinedDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "OrgUnit6": {
+                "type": "CustomField"
+              },
+              "OrgUnit5": {
+                "type": "CustomField"
+              },
+              "OrgUnit4": {
+                "type": "CustomField"
+              },
+              "OrgUnit3": {
+                "type": "CustomField"
+              },
+              "OrgUnit2": {
+                "type": "CustomField"
+              },
+              "OrgUnit1": {
+                "type": "CustomField"
+              },
+              "PersonalAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "Custom20": {
+                "type": "CustomField"
+              },
+              "Total": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "AmountDueEmployee": {
+                "format": "int32",
+                "type": "integer"
+              }
+            }
+          },
+          "reportList": {
+            "id": "reportList",
+            "type": "array",
+            "items": {
+              "$ref": "report"
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "paidDateBefore",
+          "description": "The report paid date is before this date. Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "paidDateBefore",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID of the report owner(s) to use when searching for reports.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "userDefinedDateAfter",
+          "description": "The report user defined date is after this date.Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "userDefinedDateAfter",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "paidDateAfter",
+          "description": "The report paid date is after this date. Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "paidDateAfter",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "sampleData": "25",
+          "dataType": "string",
+          "name": "pageSize",
+          "description": "The number of resources to return in a given page",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "limit",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "modifiedDateBefore",
+          "description": "The report modified date is before this date. Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "modifiedDateBefore",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "modifiedDateAfter",
+          "description": "The report modified date is after this date. Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "modifiedDateAfter",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "boolean",
+          "name": "isTestUser",
+          "description": "The report owner is a test user using the report for testing purposes in a non-production environment. FORMAT: true or false.",
+          "vendorDataType": "boolean",
+          "source": "request",
+          "type": "query",
+          "vendorName": "isTestUser",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "boolean",
+          "name": "hasVAT",
+          "description": "Determines if the report has at least one expense entry with VAT details. FORMAT: true or false.",
+          "vendorDataType": "boolean",
+          "source": "request",
+          "type": "query",
+          "vendorName": "hasVAT",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "nextPage",
+          "description": "The page number of resources to retrieve",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "offset",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "currencyCode",
+          "description": "The 3-letter ISO 4217 currency code for the report currency. Example: USD.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "currencyCode",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "countryCode",
+          "description": "The report country. Maximum 2 characters. Format: The ISO 3166-1 alpha-2 country code. Example: United States is US.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "countryCode",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "expenseTypeCode",
+          "description": "The expense type code that is the expense type for at least one expense entry in the report. Use ExpenseTypeCode from Response of GET Expense Group Configurations V3.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "expenseTypeCode",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "boolean",
+          "name": "hasAttendees",
+          "description": "Determines if the report has at least one expense entry with an attendee. FORMAT: true or false",
+          "vendorDataType": "boolean",
+          "source": "request",
+          "type": "query",
+          "vendorName": "hasAttendees",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "boolean",
+          "name": "hasBillableExpenses",
+          "description": "The IsBillable flag for at least one expense entry in the report. FORMAT: true or false.",
+          "vendorDataType": "boolean",
+          "source": "request",
+          "type": "query",
+          "vendorName": "hasBillableExpenses",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "boolean",
+          "name": "hasImages",
+          "description": "Determines if the report has at least one expense entry with an entry image or if there is a report image for this report. FORMAT: true or false",
+          "vendorDataType": "boolean",
+          "source": "request",
+          "type": "query",
+          "vendorName": "hasImages",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "expenseGroupConfigID",
+          "description": "The unique identifier for the expense group configuration associated to the report's expense group",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "expenseGroupConfigID",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "entryTransactionDateBefore",
+          "description": "The entry transaction date for at least one expense entry in the report is before this date. Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "entryTransactionDateBefore",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "entryTransactionDateAfter",
+          "description": "The entry transaction date for at least one expense entry in the report is after this date. Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "entryTransactionDateAfter",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "costObject",
+          "description": "The list item code for an allocation field for at least allocation in the report.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "costObject",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "batchID",
+          "description": "The unique identifier for a payment batch where there is at least one report payee within the report. Use the BatchID from Response of GET Payment Batch List.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "batchID",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "vendorName",
+          "description": "The Vendor Description that is the vendor for at least one expense entry in the report.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "vendorName",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "userDefinedDateBefore",
+          "description": "The report user defined date is before this date. Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "userDefinedDateBefore",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "approvalStatusCode",
+          "description": "The status code for the Approval Status",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "approvalStatusCode",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "approverLoginID",
+          "description": "The login ID for the report approver that is the current approver assigned to the report.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "approverLoginID",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "attendeeTypeCode",
+          "description": "The report contains expense entries that have attendees of the specified type.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "attendeeTypeCode",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "createDateAfter",
+          "description": "The report create date is after this date.Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "createDateAfter",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "createDateBefore",
+          "description": "The report create date is before this date.Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "createDateBefore",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "paymentStatusCode",
+          "description": "The payment status code for the report",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "paymentStatusCode",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "paymentType",
+          "description": "The unique identifier for the payment type that is the payment type for at least one expense entry in the report.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "paymentType",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "processingPaymentDateAfter",
+          "description": "The report processing payment date is after this date. Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "processingPaymentDateAfter",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "processingPaymentDateBefore",
+          "description": "The report processing payment date is before this date.Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "processingPaymentDateBefore",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "reimbursementMethod",
+          "description": "The method the report owner will be reimbursed. VALUES: ADPPAYR - ADP Payroll; APCHECK - AP (Company Check); CNQRPAY - Expense Pay; PMTSERV - Other Payment Service. NOTE: PAY_PAL is NOT supported.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "reimbursementMethod",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "submitDateAfter",
+          "description": "The report submit date is after this date.Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "submitDateAfter",
+          "required": false
+        },
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "submitDateBefore",
+          "description": "The report submit date is before this date.Format: YYYY-MM-DD",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "submitDateBefore",
+          "required": false
+        }
+      ],
+      "rootKey": "|Items"
+    },
+    {
+      "method": "POST",
+      "nextResource": "",
+      "description": "Create a new report",
+      "type": "api",
+      "vendorPath": "/expense/reports",
+      "nextPageKey": "",
+      "path": "/reports",
+      "paginationType": "",
+      "vendorMethod": "POST",
+      "response": {
+        "sampleData": "{\"ID\":\"97A720B12E0D496E9E7F\",\"URI\":\"https://www.concursolutions.com/api/v3.0/expense/reports/97A720B12E0D496E9E7F\"}",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "requestName": "reportsPost",
+        "transform": false,
+        "name": "report",
+        "swagger": {
+          "CustomField": {
+            "id": "CustomField",
+            "properties": {
+              "ListItemID": {
+                "type": "string"
+              },
+              "Type": {
+                "type": "string"
+              },
+              "Value": {
+                "type": "string"
+              },
+              "Code": {
+                "type": "string"
+              }
+            }
+          },
+          "report": {
+            "id": "report",
+            "properties": {
+              "LastModifiedDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom19": {
+                "type": "CustomField"
+              },
+              "Custom18": {
+                "type": "CustomField"
+              },
+              "SubmitDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom13": {
+                "type": "CustomField"
+              },
+              "ApproverLoginID": {
+                "type": "string"
+              },
+              "Custom12": {
+                "type": "CustomField"
+              },
+              "Custom11": {
+                "type": "CustomField"
+              },
+              "ReceiptsReceived": {
+                "type": "boolean"
+              },
+              "Custom10": {
+                "type": "CustomField"
+              },
+              "ApprovalStatusCode": {
+                "type": "string"
+              },
+              "Custom17": {
+                "type": "CustomField"
+              },
+              "CreateDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom16": {
+                "type": "CustomField"
+              },
+              "Custom15": {
+                "type": "CustomField"
+              },
+              "Custom14": {
+                "type": "CustomField"
+              },
+              "Name": {
+                "type": "string"
+              },
+              "CurrencyCode": {
+                "type": "string"
+              },
+              "TotalClaimedAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "LastComment": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "LedgerName": {
+                "type": "string"
+              },
+              "PaymentStatusName": {
+                "type": "string"
+              },
+              "PolicyID": {
+                "type": "string"
+              },
+              "WorkflowActionUrl": {
+                "type": "string"
+              },
+              "OwnerLoginID": {
+                "type": "string"
+              },
+              "AmountDueCompanyCard": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "HasException": {
+                "type": "boolean"
+              },
+              "CountrySubdivision": {
+                "type": "string"
+              },
+              "Custom4": {
+                "type": "CustomField"
+              },
+              "EverSentBack": {
+                "type": "boolean"
+              },
+              "Custom3": {
+                "type": "CustomField"
+              },
+              "Custom2": {
+                "type": "CustomField"
+              },
+              "ApprovalStatusName": {
+                "type": "string"
+              },
+              "Custom1": {
+                "type": "CustomField"
+              },
+              "Custom8": {
+                "type": "CustomField"
+              },
+              "Custom7": {
+                "type": "CustomField"
+              },
+              "ProcessingPaymentDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom6": {
+                "type": "CustomField"
+              },
+              "Custom5": {
+                "type": "CustomField"
+              },
+              "Country": {
+                "type": "string"
+              },
+              "Custom9": {
+                "type": "CustomField"
+              },
+              "PaymentStatusCode": {
+                "type": "string"
+              },
+              "TotalApprovedAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "OwnerName": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "PaidDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "ApproverName": {
+                "type": "string"
+              },
+              "UserDefinedDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "OrgUnit6": {
+                "type": "CustomField"
+              },
+              "OrgUnit5": {
+                "type": "CustomField"
+              },
+              "OrgUnit4": {
+                "type": "CustomField"
+              },
+              "OrgUnit3": {
+                "type": "CustomField"
+              },
+              "OrgUnit2": {
+                "type": "CustomField"
+              },
+              "OrgUnit1": {
+                "type": "CustomField"
+              },
+              "PersonalAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "Custom20": {
+                "type": "CustomField"
+              },
+              "Total": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "AmountDueEmployee": {
+                "format": "int32",
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID for the Report Owner.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        },
+        {
+          "vendorType": "body",
+          "sampleData": "{\"LastModifiedDate\":\"2016-01-19T22:53:23.117\",\"TotalApprovedAmount\":100,\"OwnerName\":\"Claude Elements\",\"AmountDueCompanyCard\":0,\"HasException\":true,\"ReceiptsReceived\":false,\"ApprovalStatusCode\":\"A_NOTF\",\"CreateDate\":\"2016-01-12T18:14:05.997\",\"Name\":\"Test\",\"CurrencyCode\":\"USD\",\"EverSentBack\":false,\"TotalClaimedAmount\":100,\"PersonalAmount\":0,\"ApprovalStatusName\":\"Not Submitted\",\"LastComment\":\"This is a test.\",\"Total\":100,\"Country\":\"US\",\"AmountDueEmployee\":100,\"LedgerName\":\"DEFAULT\",\"PaymentStatusCode\":\"P_NOTP\",\"PaymentStatusName\":\"Not Paid\"}",
+          "dataType": "report",
+          "name": "body",
+          "description": "The report object to create",
+          "vendorDataType": "report",
+          "source": "request",
+          "type": "body",
+          "vendorName": "content",
+          "required": true
+        }
+      ],
+      "rootKey": "|reports"
+    },
+    {
+      "method": "GET",
+      "nextResource": "",
+      "description": "Retrieve a report by ID",
+      "type": "api",
+      "vendorPath": "/expense/reports/{id}",
+      "nextPageKey": "",
+      "path": "/reports/{reportId}",
+      "paginationType": "",
+      "vendorMethod": "GET",
+      "response": {
+        "sampleData": "{\"LastModifiedDate\":\"2016-10-17T20:10:37.01\",\"TotalApprovedAmount\":0.0,\"OwnerName\":\"Claude Elements\",\"ReceiptsReceived\":false,\"ApprovalStatusCode\":\"A_NOTF\",\"CreateDate\":\"2016-10-17T20:10:37.01\",\"URI\":\"http://www.concursolutions.com/api/v3.0/expense/reports/97A720B12E0D496E9E7F\",\"Custom15\":{\"ListItemID\":\"gWqnR7mLiH4wIPgMTR5mkTdweEMehX65RXg\",\"Type\":\"List\",\"Value\":\"United States\",\"Code\":\"US\"},\"Name\":\"Test\",\"CurrencyCode\":\"USD\",\"TotalClaimedAmount\":0.0,\"LastComment\":\"\",\"ID\":\"97A720B12E0D496E9E7F\",\"LedgerName\":\"DEFAULT\",\"PaymentStatusName\":\"Not Paid\",\"PolicyID\":\"gWmE4dLVp18lVTntnORioeMY71r$pUo$smw5Q\",\"WorkflowActionUrl\":\"\",\"OwnerLoginID\":\"developer@cloud-elements.com\",\"UserDefinedDate\":\"2016-10-17T13:10:36\",\"AmountDueCompanyCard\":0.0,\"HasException\":false,\"EverSentBack\":false,\"PersonalAmount\":0.0,\"ApprovalStatusName\":\"Not Submitted\",\"Total\":0.0,\"Country\":\"US\",\"AmountDueEmployee\":0.0,\"PaymentStatusCode\":\"P_NOTP\"}",
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "transform": false,
+        "name": "report",
+        "swagger": {
+          "CustomField": {
+            "id": "CustomField",
+            "properties": {
+              "ListItemID": {
+                "type": "string"
+              },
+              "Type": {
+                "type": "string"
+              },
+              "Value": {
+                "type": "string"
+              },
+              "Code": {
+                "type": "string"
+              }
+            }
+          },
+          "report": {
+            "id": "report",
+            "properties": {
+              "LastModifiedDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom19": {
+                "type": "CustomField"
+              },
+              "Custom18": {
+                "type": "CustomField"
+              },
+              "SubmitDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom13": {
+                "type": "CustomField"
+              },
+              "ApproverLoginID": {
+                "type": "string"
+              },
+              "Custom12": {
+                "type": "CustomField"
+              },
+              "Custom11": {
+                "type": "CustomField"
+              },
+              "ReceiptsReceived": {
+                "type": "boolean"
+              },
+              "Custom10": {
+                "type": "CustomField"
+              },
+              "ApprovalStatusCode": {
+                "type": "string"
+              },
+              "Custom17": {
+                "type": "CustomField"
+              },
+              "CreateDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom16": {
+                "type": "CustomField"
+              },
+              "Custom15": {
+                "type": "CustomField"
+              },
+              "Custom14": {
+                "type": "CustomField"
+              },
+              "Name": {
+                "type": "string"
+              },
+              "CurrencyCode": {
+                "type": "string"
+              },
+              "TotalClaimedAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "LastComment": {
+                "type": "string"
+              },
+              "ID": {
+                "type": "string"
+              },
+              "LedgerName": {
+                "type": "string"
+              },
+              "PaymentStatusName": {
+                "type": "string"
+              },
+              "PolicyID": {
+                "type": "string"
+              },
+              "WorkflowActionUrl": {
+                "type": "string"
+              },
+              "OwnerLoginID": {
+                "type": "string"
+              },
+              "AmountDueCompanyCard": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "HasException": {
+                "type": "boolean"
+              },
+              "CountrySubdivision": {
+                "type": "string"
+              },
+              "Custom4": {
+                "type": "CustomField"
+              },
+              "EverSentBack": {
+                "type": "boolean"
+              },
+              "Custom3": {
+                "type": "CustomField"
+              },
+              "Custom2": {
+                "type": "CustomField"
+              },
+              "ApprovalStatusName": {
+                "type": "string"
+              },
+              "Custom1": {
+                "type": "CustomField"
+              },
+              "Custom8": {
+                "type": "CustomField"
+              },
+              "Custom7": {
+                "type": "CustomField"
+              },
+              "ProcessingPaymentDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "Custom6": {
+                "type": "CustomField"
+              },
+              "Custom5": {
+                "type": "CustomField"
+              },
+              "Country": {
+                "type": "string"
+              },
+              "Custom9": {
+                "type": "CustomField"
+              },
+              "PaymentStatusCode": {
+                "type": "string"
+              },
+              "TotalApprovedAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "OwnerName": {
+                "type": "string"
+              },
+              "URI": {
+                "type": "string"
+              },
+              "PaidDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "ApproverName": {
+                "type": "string"
+              },
+              "UserDefinedDate": {
+                "format": "date-time",
+                "type": "string"
+              },
+              "OrgUnit6": {
+                "type": "CustomField"
+              },
+              "OrgUnit5": {
+                "type": "CustomField"
+              },
+              "OrgUnit4": {
+                "type": "CustomField"
+              },
+              "OrgUnit3": {
+                "type": "CustomField"
+              },
+              "OrgUnit2": {
+                "type": "CustomField"
+              },
+              "OrgUnit1": {
+                "type": "CustomField"
+              },
+              "PersonalAmount": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "Custom20": {
+                "type": "CustomField"
+              },
+              "Total": {
+                "format": "int32",
+                "type": "integer"
+              },
+              "AmountDueEmployee": {
+                "format": "int32",
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID of the report owner(s) to use when searching for reports.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        },
+        {
+          "vendorType": "path",
+          "sampleData": "97A720B12E0D496E9E7F",
+          "dataType": "string",
+          "name": "reportId",
+          "description": "ID of the Expense Report",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        }
+      ],
+      "rootKey": ""
+    },
+    {
+      "method": "PATCH",
+      "nextResource": "",
+      "description": "Updates report specified in the URL. Only the fields provided in the supplied object will be updated, missing fields will not be altered.",
+      "type": "api",
+      "vendorPath": "/expense/reports/{id}",
+      "nextPageKey": "",
+      "path": "/reports/{reportId}",
+      "paginationType": "",
+      "vendorMethod": "PUT",
+      "response": {
+        "contentType": "application/json"
+      },
+      "ownerAccountId": 3416,
+      "operationId": "",
+      "model": {
+        "requestName": "",
+        "transform": false,
+        "name": ""
+      },
+      "hooks": [],
+      "parameters": [
+        {
+          "vendorType": "query",
+          "dataType": "string",
+          "name": "user",
+          "description": "The login ID for the Report Owner.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "query",
+          "vendorName": "user",
+          "required": false
+        },
+        {
+          "vendorType": "path",
+          "sampleData": "97A720B12E0D496E9E7F",
+          "dataType": "string",
+          "name": "reportId",
+          "description": "The unique identifier for the report.",
+          "vendorDataType": "string",
+          "source": "request",
+          "type": "path",
+          "vendorName": "id",
+          "required": true
+        },
+        {
+          "vendorType": "body",
+          "sampleData": "{\"OwnerName\":\"claude\"}",
+          "dataType": "report",
+          "name": "body",
+          "description": "The report object to update",
+          "vendorDataType": "report",
+          "source": "request",
+          "type": "body",
+          "vendorName": "content",
+          "required": false
+        }
+      ],
+      "rootKey": ""
+    }
+  ],
+  "protocolType": "http",
+  "cloneable": true,
+  "extended": true,
+  "hookName": "Concur",
+  "transformationsEnabled": true,
+  "bulkDownloadEnabled": false,
+  "deleted": false,
+  "hub": "native",
+  "typeOauth": false,
+  "name": "Concur",
+  "trialAccount": false,
+  "extendable": false,
+  "hooks": [
+    {
+      "isLegacy": true,
+      "mimeType": "application/javascript",
+      "body": "var auth = request_vendor_headers[\"Authorization\"];request_vendor_headers[\"Authorization\"] = auth.replace('Bearer', 'OAuth');\nreturn {\"request_vendor_headers\": request_vendor_headers }",
+      "type": "preRequest"
+    },
+    {
+      "isLegacy": false,
+      "mimeType": "application/javascript",
+      "body": "var auth = request_vendor_headers[\"Authorization\"] || request_vendor_headers[\"authorization\"];\ndelete request_vendor_headers[\"Authorization\"];\ndelete request_vendor_headers[\"authorization\"];\nrequest_vendor_headers[\"authorization\"] = auth.replace('Bearer', 'OAuth');\ndone({\"request_vendor_headers\": request_vendor_headers });",
+      "type": "preRequest"
+    }
+  ],
+  "parameters": [],
+  "beta": false,
+  "key": "concurnative",
+  "authentication": {
+    "type": "oauth2"
+  }
+}

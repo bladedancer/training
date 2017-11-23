@@ -1,0 +1,229 @@
+{
+	"schemaVersion": "2",
+	"name": "welcome - get /welcome",
+	"start": "doT.1",
+	"nodes": {
+		"doT.1": {
+			"type": "nodehandler://nodehandler-dot/doT",
+			"name": "Format Where",
+			"method": "formatStr",
+			"parameters": [
+				{
+					"name": "data",
+					"value": "$.params"
+				},
+				{
+					"name": "template",
+					"value": "\"{\\\"cid\\\": {{=JSON.stringify(it.cid)}}}\"",
+					"type": "string"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.where",
+					"routes": [
+						"Contact.1",
+						"ContactAddress.1"
+					]
+				},
+				"error": {
+					"context": "$.error",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"http.1": {
+			"type": "nodehandler://axway-flow/http",
+			"name": "Success",
+			"method": "setresponse",
+			"parameters": [
+				{
+					"name": "status",
+					"value": "200",
+					"type": "number"
+				},
+				{
+					"name": "body",
+					"type": "jsonpath",
+					"value": "$.response"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response",
+					"routes": []
+				}
+			}
+		},
+		"http.2": {
+			"type": "nodehandler://axway-flow/http",
+			"name": "Error",
+			"method": "setresponse",
+			"parameters": [
+				{
+					"name": "status",
+					"type": "number",
+					"value": "400"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response",
+					"routes": []
+				}
+			}
+		},
+		"doT.2": {
+			"type": "nodehandler://nodehandler-dot/doT",
+			"name": "Format Response",
+			"method": "formatObj",
+			"parameters": [
+				{
+					"name": "data",
+					"value": "$"
+				},
+				{
+					"name": "template",
+					"value": "\"{\\n  \\\"message\\\": \\\"Welcome\\\",\\n  \\\"name\\\": \\\"{{?it.contacts[0].salutation}}{{=it.contacts[0].salutation}} {{?}}{{=it.contacts[0].firstname}} {{=it.contacts[0].lastname}}\\\",\\n  \\\"address\\\": {{=JSON.stringify(it.address)}}\\n}\"",
+					"type": "string"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.response",
+					"routes": [
+						"http.1"
+					]
+				},
+				"error": {
+					"context": "$.error",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"condition.1": {
+			"type": "nodehandler://axway-flow/condition",
+			"name": "Contact Exists",
+			"method": "exists",
+			"parameters": [
+				{
+					"name": "source",
+					"value": "$.contacts[0]"
+				}
+			],
+			"outputs": {
+				"true": {
+					"context": "$.exists",
+					"routes": [
+						"condition.2"
+					]
+				},
+				"false": {
+					"context": "$.exists",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"Contact.1": {
+			"type": "nodehandler://arrow-flow-invoke/model/Contact",
+			"name": "Query Contact",
+			"method": "query",
+			"parameters": [
+				{
+					"name": "where",
+					"type": "jsonpath",
+					"value": "$.where"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.contacts",
+					"routes": [
+						"condition.1"
+					]
+				}
+			}
+		},
+		"ContactAddress.1": {
+			"type": "nodehandler://arrow-flow-invoke/model/ContactAddress",
+			"name": "Query ContactAddress",
+			"method": "query",
+			"parameters": [
+				{
+					"name": "where",
+					"type": "jsonpath",
+					"value": "$.where"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.addresses",
+					"routes": [
+						"condition.1"
+					]
+				}
+			}
+		},
+		"condition.2": {
+			"type": "nodehandler://axway-flow/condition",
+			"name": "ContactAddress Exists",
+			"method": "exists",
+			"parameters": [
+				{
+					"name": "source",
+					"value": "$.addresses[0]"
+				}
+			],
+			"outputs": {
+				"true": {
+					"context": "$.exists",
+					"routes": [
+						"gm-objectfilter.1"
+					]
+				},
+				"false": {
+					"context": "$.exists",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"gm-objectfilter.1": {
+			"type": "nodehandler://nodehandler-gm-objectfilter/gm-objectfilter",
+			"name": "Exclude",
+			"method": "exclude",
+			"parameters": [
+				{
+					"name": "fields",
+					"value": "[\"id\", \"cid\"]",
+					"type": "array"
+				},
+				{
+					"name": "source",
+					"value": "$.addresses[0]"
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.address",
+					"routes": [
+						"doT.2"
+					]
+				},
+				"error": {
+					"context": "$.error",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		}
+	}
+}
