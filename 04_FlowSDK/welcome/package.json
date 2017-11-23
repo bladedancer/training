@@ -16,7 +16,7 @@
         "lodash": "^3.10.1",
         "nodehandler-base64": "^1.0.0",
         "nodehandler-dot": "^1.0.0",
-        "nodehandler-gm-objectfilter": "file:../nodehandler-gm-objectfilter/nodehandler-gm-objectfilter-1.0.0.tgz",
+        "nodehandler-gm-objectfilter": "^1.0.0",
         "nodehandler-json": "^1.0.0",
         "pkginfo": "^0.3.1"
     },
