@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "2",
+  "name": "contactaddress-update",
+  "start": "model.update",
+  "nodes": {
+    "model.update": {
+      "type": "nodehandler://arrow-flow-invoke/model/ContactAddress",
+      "method": "update",
+      "name": "Update ContactAddress",
+      "parameters": [
+        {
+          "name": "id",
+          "value": "$.params.id"
+        },
+        {
+          "name": "data",
+          "value": "$.params.data"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.model",
+          "routes": [
+            "response.success"
+          ]
+        },
+        "notfound": {
+          "routes": [
+            "response.error.notfound"
+          ]
+        }
+      }
+    },
+    "response.success": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set success response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "204",
+          "type": "number"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    },
+    "response.error.notfound": {
+      "type": "nodehandler://axway-flow/http",
+      "name": "Set not found response",
+      "method": "setresponse",
+      "parameters": [
+        {
+          "name": "status",
+          "value": "404",
+          "type": "number"
+        }
+      ],
+      "outputs": {
+        "next": {
+          "context": "$.response"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+	"schemaVersion": "1",
+	"name": "Greet",
+	"description": "Some codeblock to run with Greet flow",
+	"path": "Greet.js",
+	"parameter": {
+		"type": "object",
+		"properties": {
+			"username": {
+				"type": "string"
+			}
+		},
+		"required": [
+			"username"
+		],
+		"additionalProperties": false
+	},
+	"outputs": {
+		"next": {
+			"description": "The codeblock completed.",
+			"context": "$.greeting",
+			"schema": {
+				"$ref": "schema:///schema/welcome/greeting"
+			}
+		},
+		"error": {
+			"description": "The codeblock failed to complete.",
+			"context": "$.error",
+			"schema": {
+				"$ref": "schema:///schema/welcome/error"
+			}
+		}
+	}
+}

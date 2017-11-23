@@ -1,0 +1,40 @@
+{
+    "name": "welcome",
+    "description": "",
+    "version": "1.0.0",
+    "author": "gavin matthews",
+    "license": "",
+    "framework": "none",
+    "keywords": [
+        "appcelerator",
+        "arrow"
+    ],
+    "repository": {},
+    "private": true,
+    "dependencies": {
+        "async": "^1.5.0",
+        "lodash": "^3.10.1",
+        "nodehandler-base64": "^1.0.0",
+        "nodehandler-dot": "^1.0.0",
+        "nodehandler-gm-objectfilter": "^1.0.0",
+        "nodehandler-json": "^1.0.0",
+        "pkginfo": "^0.3.1",
+        "requester-ce": "^1.1.7"
+    },
+    "devDependencies": {
+        "grunt": "^0.4.5",
+        "grunt-appc-js": "^1.0.19",
+        "grunt-contrib-clean": "^0.7.0",
+        "grunt-mocha-istanbul": "^3.0.1",
+        "istanbul": "^0.4.1",
+        "mocha": "^2.3.4",
+        "should": "^8.0.2",
+        "arrow": "^*",
+        "request": "^2.81.0"
+    },
+    "main": "app.js",
+    "healthCheck": true,
+    "scripts": {
+        "test": "grunt"
+    }
+}
