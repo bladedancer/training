@@ -101,13 +101,19 @@
 >      * required: true
 >      * type: string
 
-### function `getCurrentCityCityCountryCountry ( params? : Object )`
+### function `getCurrent ( params? : Object )`
 > * **Method**: get 
-> * **Path**: /current?city={city}&country={country} 
+> * **Path**: /current 
 > * **Description**: Returns a Current Observation - Given a city in the format of City,ST or City. The state, and country parameters can be provided to make the search more accurate. 
 > * **Parameters**: 
+>   * *city:* City search.. Example - &city=Raleigh,NC or &city=Berlin,DE or city=Paris&country=FR
+>      * required: true
+>      * type: string
 >   * *state:* Full name of state.
 >      * required: false
+>      * type: string
+>   * *country:* Country Code (2 letter).
+>      * required: true
 >      * type: string
 >   * *marine:* Marine stations only (buoys, oil platforms, etc)
 >      * required: false
@@ -122,12 +128,6 @@
 >      * required: false
 >      * type: string
 >   * *key:* Your registered API key.
->      * required: true
->      * type: string
->   * *city:* City search.. Example - &city=Raleigh,NC or &city=Berlin,DE or city=Paris&country=FR
->      * required: true
->      * type: string
->   * *country:* Country Code (2 letter).
 >      * required: true
 >      * type: string
 
