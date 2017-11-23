@@ -26,6 +26,8 @@ Let's say we're big fans of _Weatherbit.io_ and want to use it in our flow. Ther
 
 We need the Swagger definition for the service: https://www.weatherbit.io/static/swagger.json
 
+** Note this was not the best choice of API as the swagger is actually not valid - it has query parameters set in the path and defined as path params. Connector Builder actually worked with it but that's unexpected and can't be relied on to remain that way so the swagger on disk has been updated.
+
 Run ```connector-builder i``` to start the wizard.
 
 ```

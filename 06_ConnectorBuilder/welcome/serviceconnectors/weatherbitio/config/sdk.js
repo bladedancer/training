@@ -575,19 +575,35 @@ module.exports = {
             }
         }
     },
-    getCurrentCityCityCountryCountry: {
-        operationId: "getCurrentCityCityCountryCountry",
+    getCurrent: {
+        operationId: "getCurrent",
         description: "Returns a Current Observation - Given a city in the format of City,ST or City. The state, and country parameters can be provided to make the search more accurate.",
-        path: "/current?city={city}&country={country}",
+        path: "/current",
         method: "get",
-        uri: "https://api.weatherbit.io/v2.0/current?city={city}&country={country}",
+        uri: "https://api.weatherbit.io/v2.0/current",
         parameters: {
             query: [
+                {
+                    name: "city",
+                    "in": "query",
+                    description: "City search.. Example - &city=Raleigh,NC or &city=Berlin,DE or city=Paris&country=FR",
+                    required: true,
+                    type: "string",
+                    format: "string"
+                },
                 {
                     name: "state",
                     "in": "query",
                     description: "Full name of state.",
                     required: false,
+                    type: "string",
+                    format: "string"
+                },
+                {
+                    name: "country",
+                    "in": "query",
+                    description: "Country Code (2 letter).",
+                    required: true,
                     type: "string",
                     format: "string"
                 },
@@ -675,24 +691,7 @@ module.exports = {
                 }
             ],
             header: [],
-            path: [
-                {
-                    name: "city",
-                    "in": "path",
-                    description: "City search.. Example - &city=Raleigh,NC or &city=Berlin,DE or city=Paris&country=FR",
-                    required: true,
-                    type: "string",
-                    format: "string"
-                },
-                {
-                    name: "country",
-                    "in": "path",
-                    description: "Country Code (2 letter).",
-                    required: true,
-                    type: "string",
-                    format: "string"
-                }
-            ],
+            path: [],
             formData: [],
             body: []
         },

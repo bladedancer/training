@@ -52,7 +52,7 @@
     "url": "https://git.ecd.axway.int/Api-Builder/weatherbitio"
   },
   "scripts": {
-    "all": "npm i && npm run clean && npm run lint:fix && npm run test && npm run build:dist && npm run security",
+    "all": "npm --registry http://registry.ecd.axway.int:8081/artifactory/api/npm/registry-npm i && npm run clean && npm run lint:fix && npm run test && npm run build:dist && npm run security",
     "build": "npm run clean && npm run build:dev && npm run check:dependencies && npm run security",
     "build:dev": "npm run build:lint && npm run test && npm run build:dist",
     "build:dist": "npm run build:readme && npm run transpile",

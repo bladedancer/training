@@ -1,7 +1,7 @@
 'use strict';
 
 var connectorConfig = require('../../config/weatherbitio.default.js');
-var endpointMetadata = require('../../config/sdk')['getCurrentCityCityCountryCountry'];
+var endpointMetadata = require('../../config/sdk')['getCurrent'];
 
 /**
  * @param {Object} requestData - Required.

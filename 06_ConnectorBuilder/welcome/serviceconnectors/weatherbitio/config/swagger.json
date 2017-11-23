@@ -491,14 +491,14 @@
         }
       }
     },
-    "/current?city={city}&country={country}": {
+    "/current": {
       "get": {
         "summary": "Returns a Current Observation - Given City and/or State, Country.",
         "description": "Returns a Current Observation - Given a city in the format of City,ST or City. The state, and country parameters can be provided to make the search more accurate.",
         "parameters": [
           {
             "name": "city",
-            "in": "path",
+            "in": "query",
             "description": "City search.. Example - &city=Raleigh,NC or &city=Berlin,DE or city=Paris&country=FR",
             "required": true,
             "type": "string",
@@ -514,7 +514,7 @@
           },
           {
             "name": "country",
-            "in": "path",
+            "in": "query",
             "description": "Country Code (2 letter).",
             "required": true,
             "type": "string",
