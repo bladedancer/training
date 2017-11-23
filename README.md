@@ -2,6 +2,8 @@
 
 The goal here is to build up from nothing to an application with a complex API, giving a good introduction to the new features of API Builder as you go.
 
+*NOTE:* You _will_ need to update the _conf/default.js_ in the _welcome_ projects. Add your own email address to the validEmails and if desired change the allowedHosts to allow remote access.
+
 [00 Setup](./00_Setup)
 
 [01 Model First](./01_ModelFirst)
