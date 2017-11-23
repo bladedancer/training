@@ -8,7 +8,7 @@ It's presumed that you have Node v8 installed.
 ```
 npm install -g appcelerator@^4.2.11-4
 appc config set defaultEnvironment preproduction
-appc use 7.0.0-master.45
+appc use 7.0.0-master.47
 ```
 
 ## Create a new app
