@@ -11,3 +11,5 @@ The goal here is to build up from nothing to an application with a complex API, 
 [03 Composite](./03_Composite)
 
 [04 Flow SDK](./04_FlowSDK)
+
+[05 Service Connectors](./05_ServiceConnector)

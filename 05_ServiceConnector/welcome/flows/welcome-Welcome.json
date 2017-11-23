@@ -86,7 +86,7 @@
 				},
 				{
 					"name": "template",
-					"value": "\"{\\n  \\\"message\\\": \\\"Welcome\\\",\\n  \\\"name\\\": \\\"{{?it.contacts[0].salutation}}{{=it.contacts[0].salutation}} {{?}}{{=it.contacts[0].firstname}} {{=it.contacts[0].lastname}}\\\",\\n  \\\"address\\\": {{=JSON.stringify(it.address)}}\\n}\"",
+					"value": "\"{\\n  \\\"message\\\": \\\"Welcome\\\",\\n  \\\"name\\\": \\\"{{?it.contacts[0].salutation}}{{=it.contacts[0].salutation}} {{?}}{{=it.contacts[0].firstname}} {{=it.contacts[0].lastname}}\\\",\\n  \\\"address\\\": {{=JSON.stringify(it.address)}},\\n  \\\"expenses\\\":  {{=it.expenseTotal}}\\n}\"",
 					"type": "string"
 				}
 			],
@@ -184,7 +184,7 @@
 				"true": {
 					"context": "$.exists",
 					"routes": [
-						"gm-objectfilter.1"
+						"SAPConcur.1"
 					]
 				},
 				"false": {
@@ -215,6 +215,103 @@
 					"context": "$.address",
 					"routes": [
 						"doT.2"
+					]
+				},
+				"error": {
+					"context": "$.error",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"SAPConcur.1": {
+			"type": "nodehandler://service-connector/SAPConcur",
+			"name": "getReports",
+			"method": "getReports",
+			"parameters": [
+				{
+					"name": "x-vendor-authorization",
+					"type": "string",
+					"value": "\"0_Pq9MM8VrvJFdKVNj6GSq2aJXE=\""
+				},
+				{
+					"name": "user",
+					"type": "jsonpath",
+					"value": "$.contacts[0].email"
+				}
+			],
+			"outputs": {
+				"200": {
+					"context": "$.expenses",
+					"routes": [
+						"doT.3"
+					]
+				},
+				"400": {
+					"context": "$.SAPConcur.getReports.400",
+					"routes": [
+						"http.2"
+					]
+				},
+				"401": {
+					"context": "$.SAPConcur.getReports.401",
+					"routes": [
+						"http.2"
+					]
+				},
+				"403": {
+					"context": "$.SAPConcur.getReports.403",
+					"routes": [
+						"http.2"
+					]
+				},
+				"404": {
+					"context": "$.SAPConcur.getReports.404",
+					"routes": [
+						"http.2"
+					]
+				},
+				"405": {
+					"context": "$.SAPConcur.getReports.405",
+					"routes": [
+						"http.2"
+					]
+				},
+				"500": {
+					"context": "$.SAPConcur.getReports.500",
+					"routes": [
+						"http.2"
+					]
+				},
+				"502": {
+					"context": "$.SAPConcur.getReports.502",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"doT.3": {
+			"type": "nodehandler://nodehandler-dot/doT",
+			"name": "Total Expenses",
+			"method": "formatObj",
+			"parameters": [
+				{
+					"name": "data",
+					"value": "$.expenses.data"
+				},
+				{
+					"name": "template",
+					"type": "string",
+					"value": "\"{{ var total = 0; }}\\n{{~it :data:index}}\\n{{total += parseInt(data.Total);}}\\n{{~}}\\n{{=total}}\""
+				}
+			],
+			"outputs": {
+				"next": {
+					"context": "$.expenseTotal",
+					"routes": [
+						"gm-objectfilter.1"
 					]
 				},
 				"error": {

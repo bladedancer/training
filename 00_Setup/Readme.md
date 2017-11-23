@@ -3,7 +3,7 @@
 The goal here is to get API Builder installed and running.
 
 ## Install API Builder
-It's presumed that you have Node v6 installed.
+It's presumed that you have Node v8 installed.
 
 ```
 npm install -g appcelerator@^4.2.11-2

@@ -34,6 +34,9 @@
 								},
 								"address": {
 									"$ref": "schema:///model/ContactAddress"
+								},
+								"expenses": {
+									"type": "number"
 								}
 							}
 						}

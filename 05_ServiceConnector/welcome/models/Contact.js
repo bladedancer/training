@@ -1,7 +1,5 @@
 var Arrow = require('arrow');
 var Model = Arrow.createModel('Contact', {
-    "description": "The contact's details",
-    "connector": "appc.arrowdb",
     "fields": {
         "cid": {
             "type": "string",
@@ -21,8 +19,16 @@ var Model = Arrow.createModel('Contact', {
         "salutation": {
             "type": "string",
             "description": "The salutation to use when addressing the contact."
+        },
+        "email": {
+            "type": "string",
+            "required": true
         }
     },
-    "actions": []
+    "connector": "appc.arrowdb",
+    "actions": [],
+    "singular": "contact",
+    "plural": "contacts",
+    "description": "The contact's details"
 });
 module.exports = Model;
