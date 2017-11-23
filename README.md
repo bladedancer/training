@@ -13,3 +13,5 @@ The goal here is to build up from nothing to an application with a complex API, 
 [04 Flow SDK](./04_FlowSDK)
 
 [05 Service Connectors](./05_ServiceConnector)
+
+[06 Connector Builder](./06_ConnectorBuilder)
