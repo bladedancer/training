@@ -184,7 +184,7 @@
 				"true": {
 					"context": "$.exists",
 					"routes": [
-						"SAPConcur.1"
+						"gm-objectfilter.1"
 					]
 				},
 				"false": {
@@ -214,7 +214,7 @@
 				"next": {
 					"context": "$.address",
 					"routes": [
-						"doT.2"
+						"Weatherbit.io-WeatherAPI.1"
 					]
 				},
 				"error": {
@@ -311,10 +311,46 @@
 				"next": {
 					"context": "$.expenseTotal",
 					"routes": [
-						"gm-objectfilter.1"
+						"doT.2"
 					]
 				},
 				"error": {
+					"context": "$.error",
+					"routes": [
+						"http.2"
+					]
+				}
+			}
+		},
+		"Weatherbit.io-WeatherAPI.1": {
+			"type": "nodehandler://service-connector/Weatherbit.io-WeatherAPI",
+			"name": "getCurrentCityCityCountryCountry",
+			"method": "getCurrentCityCityCountryCountry",
+			"parameters": [
+				{
+					"name": "city",
+					"type": "string",
+					"value": "\"Dublin\""
+				},
+				{
+					"name": "country",
+					"type": "string",
+					"value": "\"IE\""
+				},
+				{
+					"name": "key",
+					"type": "string",
+					"value": "\"d6156a81fc9d4d10808b6ccf8087a2e3\""
+				}
+			],
+			"outputs": {
+				"200": {
+					"context": "$.weather",
+					"routes": [
+						"SAPConcur.1"
+					]
+				},
+				"default": {
 					"context": "$.error",
 					"routes": [
 						"http.2"

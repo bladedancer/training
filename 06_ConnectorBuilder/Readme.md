@@ -16,166 +16,44 @@ If it's not publicly available yet then it can be installed from the internal re
 npm --registry http://registry.ecd.axway.int:8081/artifactory/api/npm/registry-npm install -g connector-builder
 ```
 
+Once installed you can run the builder using ```connector-builder```.
 
+## Create a weather connector
 
-## Installation
+Let's say we're big fans of _Weatherbit.io_ and want to use it in our flow. There's no node available but that's not a problem. We can create one.
 
+We need the Swagger definition for the service: https://www.weatherbit.io/static/swagger.json
 
-A number of these service connectors were developed in conjuction with Cloud Elements and require the installation of a supporting module _requester-ce_.
-
-Download the connector (from internal registy for now - this will change on release):
-```
-http://registry.ecd.axway.int:8081/artifactory/local-npm/appc.concur/-/appc.concur-1.0.3-42.tgz
-```
-
-Extract the tgz, you should have a folder called _package_. Copy this folder to the _serviceconnectors_ folder and rename it _concur_. Note if this is your first service connector you will need to create the _serviceconnectors_ folder first. Also install the required modules for the connector:
+Run ```connector-builder i``` to start the wizard.
 
 ```
-npm install -S requester-ce
+w:\training\06_ConnectorBuilder>connector-builder i
+? Enter the name of the connector you want to generate: weatherbitio
+? Enter the URL or the path (absolute or relative) to the API definition: .\swagger\weatherbitio.json
+? Select the Connector Type: Open API
+? Select the Context where the Connector will be used: API Builder
+? Enter the absolute path to the location where the connector will be generated (leave empty for current dir):
+? Do you want to remove previous connector if it is already exist? Yes
 ```
 
-If this hasn't been published to NPMJS then you might need to install from the internal registry:
+Before building you can replace _icon.svg_ with the logo of the service.
+Then build all:
 
 ```
-npm --registry http://registry.ecd.axway.int:8081/artifactory/api/npm/registry-npm install -S requester-ce
+npm run all
+npm pack
 ```
 
-Restart the API Builder console and you should now see the _Concur_ connector.
+## Install the connector
 
-![ConnectorTool](./imgs/ConnectorTool.png)
-
-This new node can now be used in the flow like any other node. Concur is for an expense tracking, so in this contrived example we'll query the pending expenses for the contact.
-
-## Model Updates
-
-Concur's user names are email based so we'll add a new field to our _Contact_ model for email.
-
-![ContactEmailEdit](./imgs/ContactEmailEdit.png)
-
-Rather than use the _Update contact_ API on _Contact_ well use the dashboard to edit the data. Navigate to the dashboard list of apps https://platform-preprod.axwaytest.net/#/app and search for you application. Once open click on the _Manage Data_
-
-![ManageData](./imgs/ManageData.png)
-
-Cick on _Custom Objects_ and from the _Select Type_ drop down select contact. Expand the batman row (only going to update batman for this example but you could do them all).
-
-![BatmanView](./imgs/BatmanView.png)
-
-Click the pencil and in the _Fields_ add an email:
+This is the same as installing a downloaded service connector. Unzip the packed tgz to the serviceconnectors folder of your app.
 
 ```
-{
-  "cid": "batman",
-  "firstname": "Bruce",
-  "lastname": "Wayne",
-  "salutation": "Mr.",
-  "email": "batman@gotham.com"
-}
+npm install -S axway-requester
 ```
 
-## Updated Use case
+Start the API Builder console and navigate to the _Welcome_ flow: http://localhost:8080/console/project/flows/welcome-Welcome/edit
 
-Concur is an expenses tracking application, so we will extend the flow to query and total the users expenses and include that in the response. Batman's Concur expenses look like this:
+The _Weatherbit.io_ node is now available:
 
-![BatmanExpenses](./imgs/BatmanExpenses.png)
-
-We're going to add the Concur node to the flow with the _getReports_ method. Then we'll ues a _Compose_ node to total the expenses.
-
-![UpdatedFlow](./imgs/UpdatedFlow.png)
-
-*Note:* This flow is starting to show some of the issues with the current layout engine, this will be improved in the future.
-
-### Get User Expenses
-*Type:* SAP Concur
-
-*Method:* getReports
-
-As this node is going to user the contact's email as the user filter it needs to run after the _Query Contact_ node. It has a number of outputs for the various error codes, we'll just route them all to the same _Error_ node for this demo.
-
-![GetReports](./imgs/GetReports.png) ![GetReportsOutput](./imgs/GetReportsOutput.png)
-
-The connector requires an authentication token _x-vendor-authorization_. Also set the _user_ filter to _$.contacts[0].email_. The success output _200_ saves the result in _$.expenses_.
-
-
-### Total Expenses
-*Type:* Compose
-
-*Method:* Format object
-
-The _Compose_ node is quite powerful and can be used to evaluate code. It's generally better to create custom nodes or codeblocks for tasks like this but just to show it can be done with the _Compose_ node.
-
-![TotalExpenses](./imgs/TotalExpenses.png) ![GetReportsOutput](./imgs/TotalExpensesOutput.png)
-
-The template is using the evaluation and iteration features of [dot](http://olado.github.io/doT/).
-
-```
-{{ var total = 0; }}
-{{~it :data:index}}
-{{total += parseInt(data.Total);}}
-{{~}}
-{{=total}}
-```
-
-The output of the template evaluation is stored as _$.expenseTotal_.
-
-
-### Format Response
-*Type:* Compose
-
-*Method:* Format object
-
-Update the _Format Response_ node to include the expenses in it's template:
-
-```
-{
-  "message": "Welcome",
-  "name": "{{?it.contacts[0].salutation}}{{=it.contacts[0].salutation}} {{?}}{{=it.contacts[0].firstname}} {{=it.contacts[0].lastname}}",
-  "address": {{=JSON.stringify(it.address)}},
-  "expenses":  {{=it.expenseTotal}}
-}
-```
-
-## Update the endpoint definition
-
-As before, we're changing the response and so should update the endpoint definition to include this new field. Currently this has to be done on the file system.
-
-Stop API Builder and open  _endpoints\welcome.json_. Change the response to include _expenses_:
-
-```
-"schema": {
-	"type": "object",
-	"properties": {
-		"message": {
-			"type": "string"
-		},
-		"name": {
-			"type": "string"
-		},
-		"address": {
-			"$ref": "schema:///model/ContactAddress"
-		},
-		"expenses": {
-			"type": "number"
-		}
-	}
-}
-```
-
-## Test API
-
-Open the _Test API_ panel for the _Welcome_ API and execute it with a _cid_ of _batman_. The response should now include the expenses total:
-
-```
-{
-  "message": "Welcome",
-  "name": "Mr. Bruce Wayne",
-  "address": {
-    "address1": "Wayne Manor",
-    "address2": "107 Mountain Drive",
-    "city": "Gotham City",
-    "state": "New York",
-    "country": "USA",
-    "postalcode": "0"
-  },
-  "expenses": 4210
-}
-```
+![WeatherTool.png](./imgs/WeatherTool.png)

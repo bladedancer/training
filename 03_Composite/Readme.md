@@ -25,7 +25,7 @@ Expand the _Create a ContactAddress_ row and using the _Test API_ panel create t
   "address2": "107 Mountain Drive",
   "city": "Gotham City",
   "state": "NY",
-  "country": "USA",
+  "country": "US",
   "postalcode": "0"
 }
 ```
@@ -37,7 +37,7 @@ Expand the _Create a ContactAddress_ row and using the _Test API_ panel create t
   "address3": "Queens",
   "city": "New York",
   "state": "NY",
-  "country": "USA",
+  "country": "US",
   "postalcode": "11375"
 }
 ```
@@ -57,7 +57,7 @@ Expand the _Create a ContactAddress_ row and using the _Test API_ panel create t
   "address1": "Main st",
   "city": "Aughrim",
   "state": "Co. Wicklow",
-  "country": "Ireland",
+  "country": "IE",
   "postalcode": ""
 }
 ```
@@ -172,7 +172,7 @@ As before, using the _Test API_ panel execute with _cid_ of _batman_ and you sho
     "address2": "107 Mountain Drive",
     "city": "Gotham City",
     "state": "New York",
-    "country": "USA",
+    "country": "US",
     "postalcode": "0"
   }
 }
