@@ -23,7 +23,7 @@ Expand the _Create a ContactAddress_ row and using the _Test API_ panel create t
   "cid": "batman",
   "address1": "Wayne Manor",
   "address2": "107 Mountain Drive",
-  "city": "Gotham City",
+  "city": "New York",
   "state": "NY",
   "country": "US",
   "postalcode": "0"
@@ -170,7 +170,7 @@ As before, using the _Test API_ panel execute with _cid_ of _batman_ and you sho
     "cid": "batman",
     "address1": "Wayne Manor",
     "address2": "107 Mountain Drive",
-    "city": "Gotham City",
+    "city": "New York",
     "state": "New York",
     "country": "US",
     "postalcode": "0"

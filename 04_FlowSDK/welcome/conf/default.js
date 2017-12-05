@@ -60,12 +60,12 @@ module.exports = {
 		// server. IP ranges can also be specified. e.g. [ 'localhost', '192.168.1.0/24', '10.1.1.1' ]
 		// An empty list [] will allow unrestricted access, though this is not recommended due to security concerns.
 		allowedHosts: [
-			'localhost', '::1'
+			'localhost', '::1', '172.17.0.1'
 		],
 		// set the email addresses you want to be able to log in to the admin website
 		validEmails: ["gmatthews@axway.com"],
 		// set the organization ids you want to be able to log in to the admin website
-		validOrgs: [952042987122412]
+		validOrgs: [952042987122412, 59806716673154]
 	},
 
 	// you can generally leave this as-is since it is generated for each new project you created.
