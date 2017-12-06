@@ -9,7 +9,7 @@ Open the Models page by clicking on the Cube in the navigation bar or browse to 
 Create a "Contact" model.
 ![ModelNewView](./imgs/localhost_8080_console_project_models_new.png)
 
-Add the fields cid, firstname, lastname and salutation:
+Add the fields cid, firstname, lastname, salutation, and email:
 ![ModelFieldsView](./imgs/localhost_8080_console_project_models_create.png)
 
 No need to create the APIs for the model as we'll generate flow based endpoints later.
@@ -68,7 +68,8 @@ Use the panel to create the following entries:
   "cid": "batman",
   "firstname": "Bruce",
   "lastname": "Wayne",
-  "salutation": "Mr."
+  "salutation": "Mr.",
+  "email": "batman@gotham.com"
 }
 ```
 
@@ -76,7 +77,8 @@ Use the panel to create the following entries:
 {
   "cid": "spiderman",
   "firstname": "Peter",
-  "lastname": "Parker"
+  "lastname": "Parker",
+  "email": "spider@ny.com"
 }
 ```
 
@@ -85,7 +87,8 @@ Use the panel to create the following entries:
   "cid": "wonderwoman",
   "firstname": "Diana",
   "lastname": "Prince",
-  "salutation": "Ms."
+  "salutation": "Ms.",
+  "email": "ww@earth.com"
 }
 ```
 
@@ -94,7 +97,8 @@ Use the panel to create the following entries:
   "cid": "superman",
   "firstname": "Clark",
   "lastname": "Kent",
-  "salutation": "Mr."
+  "salutation": "Mr.",
+  "email": "cs@city.com"
 }
 ```
 
@@ -110,27 +114,31 @@ Executing this should return data like:
     "cid": "superman",
     "firstname": "Clark",
     "lastname": "Kent",
-    "salutation": "Mr."
+    "salutation": "Mr.",
+    "email": "cs@city.com"
   },
   {
     "id": "5a1483b45bbb6a027f000c71",
     "cid": "wonderwoman",
     "firstname": "Diana",
     "lastname": "Prince",
-    "salutation": "Ms."
+    "salutation": "Ms.",
+    "email": "ww@earth.com"
   },
   {
     "id": "5a14838993e737027c000d54",
     "cid": "spiderman",
     "firstname": "Peter",
-    "lastname": "Parker"
+    "lastname": "Parker",
+    "email": "spider@ny.com"
   },
   {
     "id": "5a1483635bbb6a0275000c9f",
     "cid": "batman",
     "firstname": "Bruce",
     "lastname": "Wayne",
-    "salutation": "Mr."
+    "salutation": "Mr.",
+    "email": "batman@gotham.com"
   }
 ]
 ```

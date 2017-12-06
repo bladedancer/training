@@ -33,31 +33,6 @@ Restart the API Builder console and you should now see the _Concur_ connector.
 
 This new node can now be used in the flow like any other node. Concur is for an expense tracking, so in this contrived example we'll query the pending expenses for the contact.
 
-## Model Updates
-
-Concur's user names are email based so we'll add a new field to our _Contact_ model for email.
-
-![ContactEmailEdit](./imgs/ContactEmailEdit.png)
-
-Rather than use the _Update contact_ API on _Contact_ well use the dashboard to edit the data. Navigate to the dashboard list of apps https://platform-preprod.axwaytest.net/#/app and search for you application. Once open click on the _Manage Data_
-
-![ManageData](./imgs/ManageData.png)
-
-Cick on _Custom Objects_ and from the _Select Type_ drop down select contact. Expand the batman row (only going to update batman for this example but you could do them all).
-
-![BatmanView](./imgs/BatmanView.png)
-
-Click the pencil and in the _Fields_ add an email:
-
-```
-{
-  "cid": "batman",
-  "firstname": "Bruce",
-  "lastname": "Wayne",
-  "salutation": "Mr.",
-  "email": "batman@gotham.com"
-}
-```
 
 ## Updated Use case
 
