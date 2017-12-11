@@ -6,15 +6,15 @@ The goal here is to get API Builder installed and running.
 It's presumed that you have Node v8 installed.
 
 ```
-npm install -g appcelerator@^4.2.11-4
+npm install -g appcelerator
+appc use latest
 appc config set defaultEnvironment preproduction
-appc use 7.0.0-master.47
 ```
 
 ## Create a new app
 ```
 w:\training\01_Welcome>appc new -t arrow
-Appcelerator Command-Line Interface, version 7.0.0-master.33
+Appcelerator Command-Line Interface, version 7.0.0
 Copyright (c) 2014-2017, Appcelerator, Inc.  All Rights Reserved.
 
 Preproduction Environment Active
@@ -27,7 +27,7 @@ Preproduction Environment Active
 ## Start API Builder
 ```
 w:\training\01_Welcome\welcome>appc run
-Appcelerator Command-Line Interface, version 7.0.0-master.33
+Appcelerator Command-Line Interface, version 7.0.0
 Copyright (c) 2014-2017, Appcelerator, Inc.  All Rights Reserved.
 
 Preproduction Environment Active
