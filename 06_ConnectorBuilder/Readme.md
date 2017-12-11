@@ -41,6 +41,17 @@ w:\training\06_ConnectorBuilder>connector-builder i
 ```
 
 Before building you can replace _icon.svg_ with the logo of the service.
+
+You also need to install the axway-requester module which may not be on the public npm registery. 
+
+```
+npm install -S axway-requester
+```
+If its not on the public registry install it with:
+
+```
+npm --registry http://registry.ecd.axway.int:8081/artifactory/api/npm/registry-npm install -S axway-requester
+```
 Then build all:
 
 ```
@@ -52,9 +63,7 @@ npm pack
 
 This is the same as installing a downloaded service connector. Unzip the packed tgz to the serviceconnectors folder of your app.
 
-```
-npm install -S axway-requester
-```
+
 
 Start the API Builder console and navigate to the _Welcome_ flow: http://localhost:8080/console/project/flows/welcome-Welcome/edit
 
