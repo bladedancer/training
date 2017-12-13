@@ -24,7 +24,7 @@ Once installed you can run the builder using ```connector-builder```.
 
 Let's say we're big fans of _Weatherbit.io_ and want to use it in our flow. There's no node available but that's not a problem. We can create one.
 
-We need the Swagger definition for the service: https://www.weatherbit.io/static/swagger.json
+We need the Swagger definition for the service: https://raw.githubusercontent.com/bladedancer/training/master/06_ConnectorBuilder/swagger/weatherbitio.json
 
 ** Note this was not the best choice of API as the swagger is actually not valid - it has query parameters set in the path and defined as path params. Connector Builder actually worked with it but that's unexpected and can't be relied on to remain that way so the swagger on disk has been updated (at least for the _getCurrent_ method that this flow is using).
 
