@@ -106,7 +106,7 @@ flownodes
 			type: 'string'
 		}
 	})
-	.action(include);
+	.action(actin.include);
 ```
 
 Exclude Method
@@ -141,7 +141,7 @@ flownodes
 			type: 'string'
 		}
 	})
-	.action(exclude);
+	.action(action.exclude);
 ```
 
 Node the _flownodes_ here follows a builder pattern and these are all chainable, they're just being broken down here for readbility.
@@ -150,15 +150,35 @@ Node the _flownodes_ here follows a builder pattern and these are all chainable,
 One thing to be careful of here that is not obvious is that the object returned by _query_ is not plain data object, it has a custom toJson method that converts it to a plan data object. So to handle models aswell as other object be sure to stringify/parse the source object first.
 
 ```
-// JSON cloning to work with models better.
-const obj = JSON.parse(JSON.stringify(source));
-Object.keys(obj).forEach(field => {
-	if ((!include && fields.includes(field))
-		|| (include && !fields.includes(field))) {
-		delete obj[field];
+function filter(req, include, cb) {
+	const source = req.params.source;
+	const fields = req.params.fields;
+	if (!source || typeof source !== 'object') {
+		return cb.error(null, 'Invalid source, object required.');
+	} else if (!fields || !Array.isArray(fields)) {
+		return cb.error(null, 'Invalid fields, array required.');
 	}
-});
-cb.next(null, obj);
+	// JSON cloning to work with models better.
+	const obj = JSON.parse(JSON.stringify(source));
+	Object.keys(obj).forEach(field => {
+		if ((!include && fields.includes(field))
+			|| (include && !fields.includes(field))) {
+			delete obj[field];
+		}
+	});
+	cb.next(null, obj);
+}
+function include(req, cb) {
+	filter(req, true, cb);
+}
+function exclude(req, cb) {
+	filter(req, false, cb);
+}
+exports = module.exports = {
+	include,
+	exclude
+};
+
 ```
 
 Note also the usage of the callback _cb_. The callback has methods on it matching the outputs defined in _index.js_, in this case _error_ and _next_. So _cb.error_ is triggering the output named error:
