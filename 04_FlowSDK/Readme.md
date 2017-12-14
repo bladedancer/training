@@ -106,7 +106,7 @@ flownodes
 			type: 'string'
 		}
 	})
-	.action(action.exclude);
+	.action(action.include);
 ```
 
 Exclude Method
