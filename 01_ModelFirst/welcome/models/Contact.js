@@ -21,6 +21,10 @@ var Model = Arrow.createModel('Contact', {
         "salutation": {
             "type": "string",
             "description": "The salutation to use when addressing the contact."
+        },
+        "email": {
+            "type": "string",
+            "required": true
         }
     },
     "actions": []
