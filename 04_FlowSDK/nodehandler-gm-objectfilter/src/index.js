@@ -48,7 +48,7 @@ flownodes
 flownodes
 	.method('exclude', {
 		name: 'Exclude',
-		description: 'Include the selected fields.'
+		description: 'Exclude the selected fields.'
 	})
 	.parameter('source', {
 		description: 'The source object to filter.',
