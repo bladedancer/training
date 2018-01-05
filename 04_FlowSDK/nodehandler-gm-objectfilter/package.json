@@ -1,7 +1,7 @@
 {
   "name": "nodehandler-gm-objectfilter",
-  "version": "1.0.0",
-  "description": "TODO",
+  "version": "1.0.1",
+  "description": "Node to filter object fields.",
   "main": "dist/index.js",
   "author": "",
   "license": "ISC",
