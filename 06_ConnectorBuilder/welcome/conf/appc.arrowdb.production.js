@@ -7,10 +7,10 @@ module.exports = {
       "enabled": true,
       "connector": "appc.arrowdb",
       "environment": "production",
-      "key": "mhvoTTe8ia3eKJxC6mX0NLnfMXb6GjTC",
-      "baseurl": "https://preprod-api.cloud.appctest.com",
+      "key": "g3qTXvQL3ynePv1m3tPvXaNOobTbbCpx",
+      "baseurl": "https://api.cloud.appcelerator.com",
       "username": "appc_app_user",
-      "password": "Vfnu8LDh1pVyY837z6"
+      "password": "eO84JrSavzKGbuyoo0"
     }
   }
 };

@@ -13,7 +13,7 @@
     "private": true,
     "dependencies": {
         "async": "^1.5.0",
-        "axway-requester": "^1.0.0-1",
+        "axway-requester": "^1.0.0",
         "lodash": "^3.10.1",
         "nodehandler-base64": "^1.0.0",
         "nodehandler-dot": "^1.0.0",
